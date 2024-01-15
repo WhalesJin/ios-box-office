@@ -35,6 +35,10 @@
 		AC5A0F3D2B47950300DB9D78 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */; };
 		AC9BDB3E2A78D083000FA75F /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC9BDB3D2A78D083000FA75F /* APIKey.plist */; };
 		AC9CEA692A8A733C00DD74F4 /* MovieScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */; };
+		ACA69B9A2B51333F00F35279 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA69B992B51333F00F35279 /* Requestable.swift */; };
+		ACA69B9C2B51337000F35279 /* NetworkManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA69B9B2B51337000F35279 /* NetworkManageable.swift */; };
+		ACA69BA02B54F97D00F35279 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA69B9F2B54F97D00F35279 /* HTTPMethod.swift */; };
+		ACA69BA22B54F9B200F35279 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA69BA12B54F9B200F35279 /* HTTPHeader.swift */; };
 		ACDAD3E22A875953000604B2 /* RankOldOrNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDAD3E12A875953000604B2 /* RankOldOrNew.swift */; };
 		ACDC76492A7D4DAA00D324E5 /* BoxOfficeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDC76482A7D4DAA00D324E5 /* BoxOfficeCell.swift */; };
 		ACF5C62E2A811956005CB910 /* BoxOfficeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5C62D2A811956005CB910 /* BoxOfficeManager.swift */; };
@@ -85,6 +89,8 @@
 		AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		AC9BDB3D2A78D083000FA75F /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScrollView.swift; sourceTree = "<group>"; };
+		ACA69B992B51333F00F35279 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		ACA69B9B2B51337000F35279 /* NetworkManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManageable.swift; sourceTree = "<group>"; };
 		ACA69B9F2B54F97D00F35279 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		ACA69BA12B54F9B200F35279 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		ACDAD3E12A875953000604B2 /* RankOldOrNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankOldOrNew.swift; sourceTree = "<group>"; };
@@ -228,6 +234,8 @@
 		AC4A50F62B4D6C99005D5DB3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				ACA69B992B51333F00F35279 /* Requestable.swift */,
+				ACA69B9B2B51337000F35279 /* NetworkManageable.swift */,
 				ACA69B9F2B54F97D00F35279 /* HTTPMethod.swift */,
 				ACA69BA12B54F9B200F35279 /* HTTPHeader.swift */,
 				3CF5610A2A73D30F0048D14D /* URLConfigurable.swift */,
@@ -386,6 +394,7 @@
 				AC11E7DF2A729341008A84B0 /* Movie.swift in Sources */,
 				63DF20EF2970E1A0005DF7D1 /* AppDelegate.swift in Sources */,
 				63DF20F12970E1A0005DF7D1 /* SceneDelegate.swift in Sources */,
+				ACA69B9A2B51333F00F35279 /* Requestable.swift in Sources */,
 				ACDC76492A7D4DAA00D324E5 /* BoxOfficeCell.swift in Sources */,
 				3CF561382A78D79F0048D14D /* Bundle+.swift in Sources */,
 				3C77A52D2A9104870053EE15 /* BoxOfficeGridCell.swift in Sources */,
@@ -402,6 +411,7 @@
 				3C9660672A8A6CA6008564C0 /* MovieInformationViewController.swift in Sources */,
 				ACDAD3E22A875953000604B2 /* RankOldOrNew.swift in Sources */,
 				ACF8A0982A8B077400F49A87 /* MovieDetailStackView.swift in Sources */,
+				ACA69B9C2B51337000F35279 /* NetworkManageable.swift in Sources */,
 				3C79AB7B2A879ECD0038B41B /* KakaoAPI.swift in Sources */,
 				3CF561352A77C9480048D14D /* NetworkError.swift in Sources */,
 				3CB38E9C2A7FF7690070E63C /* CountFormatter.swift in Sources */,
