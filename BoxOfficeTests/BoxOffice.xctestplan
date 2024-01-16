@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "D2C5DCD7-10A6-4AF0-B8E7-C7516FBBB087",
+      "id" : "D93B011E-5F2D-4A42-817C-7B3F5A5F9CE3",
       "name" : "Test Scheme Action",
       "options" : {
 
@@ -17,11 +17,10 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:BoxOffice.xcodeproj",
-        "identifier" : "AC02E1912A6FC02B00C6A91B",
-        "name" : "DecodingManagerTests"
+        "identifier" : "AC0546982B5609350087B7F7",
+        "name" : "BoxOfficeTests"
       }
     }
   ],

@@ -39,20 +39,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC02E1842A6FAA9900C6A91B"
+               BlueprintIdentifier = "AC0546982B5609350087B7F7"
                BuildableName = "BoxOfficeTests.xctest"
                BlueprintName = "BoxOfficeTests"
-               ReferencedContainer = "container:BoxOffice.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC02E1912A6FC02B00C6A91B"
-               BuildableName = "DecodingManagerTests.xctest"
-               BlueprintName = "DecodingManagerTests"
                ReferencedContainer = "container:BoxOffice.xcodeproj">
             </BuildableReference>
          </TestableReference>
