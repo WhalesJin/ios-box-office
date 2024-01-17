@@ -31,6 +31,8 @@
 		AC02E17C2A6F703D00C6A91B /* BoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02E17B2A6F703D00C6A91B /* BoxOffice.swift */; };
 		AC0546C22B5609C10087B7F7 /* DecodingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546C12B5609C10087B7F7 /* DecodingManagerTests.swift */; };
 		AC0546CF2B5609D90087B7F7 /* DummyRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546C92B5609D90087B7F7 /* DummyRequester.swift */; };
+		AC0546D02B5609D90087B7F7 /* MockFailureNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546CB2B5609D90087B7F7 /* MockFailureNetworkManager.swift */; };
+		AC0546D12B5609D90087B7F7 /* MockSuccessNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546CC2B5609D90087B7F7 /* MockSuccessNetworkManager.swift */; };
 		AC0546D52B5609E70087B7F7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */; };
 		AC0546D72B5609F70087B7F7 /* Requesters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546D62B5609F70087B7F7 /* Requesters.swift */; };
 		AC11E7DF2A729341008A84B0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11E7DE2A729341008A84B0 /* Movie.swift */; };
@@ -88,6 +90,8 @@
 		AC0546992B5609350087B7F7 /* BoxOfficeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxOfficeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0546C12B5609C10087B7F7 /* DecodingManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingManagerTests.swift; sourceTree = "<group>"; };
 		AC0546C92B5609D90087B7F7 /* DummyRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyRequester.swift; sourceTree = "<group>"; };
+		AC0546CB2B5609D90087B7F7 /* MockFailureNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFailureNetworkManager.swift; sourceTree = "<group>"; };
+		AC0546CC2B5609D90087B7F7 /* MockSuccessNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSuccessNetworkManager.swift; sourceTree = "<group>"; };
 		AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		AC0546D62B5609F70087B7F7 /* Requesters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requesters.swift; sourceTree = "<group>"; };
 		AC11E7DE2A729341008A84B0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				AC0546C82B5609D90087B7F7 /* Dummy */,
+				AC0546CA2B5609D90087B7F7 /* Mock */,
 			);
 			path = "Test Double";
 			sourceTree = "<group>";
@@ -264,6 +269,15 @@
 				AC0546C92B5609D90087B7F7 /* DummyRequester.swift */,
 			);
 			path = Dummy;
+			sourceTree = "<group>";
+		};
+		AC0546CA2B5609D90087B7F7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				AC0546CB2B5609D90087B7F7 /* MockFailureNetworkManager.swift */,
+				AC0546CC2B5609D90087B7F7 /* MockSuccessNetworkManager.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		AC0546D32B5609E70087B7F7 /* NetworkManagerTests */ = {
@@ -465,6 +479,8 @@
 				AC0546C22B5609C10087B7F7 /* DecodingManagerTests.swift in Sources */,
 				AC0546D72B5609F70087B7F7 /* Requesters.swift in Sources */,
 				AC0546D52B5609E70087B7F7 /* NetworkManagerTests.swift in Sources */,
+				AC0546D02B5609D90087B7F7 /* MockFailureNetworkManager.swift in Sources */,
+				AC0546D12B5609D90087B7F7 /* MockSuccessNetworkManager.swift in Sources */,
 				AC0546CF2B5609D90087B7F7 /* DummyRequester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
