@@ -34,14 +34,22 @@ extension KakaoAPI: URLConfigurable {
         }
     }
     
+    var url: URL? {
+        return URL(baseURL, path, queries)
+    }
+    
+    var header: [HTTPHeader]? {
+        return [.authorization(key: "KakaoAK \(Bundle.main.KAKAO_REST_API_KEY)")]
+    }
+    
     var urlRequest: URLRequest? {
         guard let url = URL(baseURL, path, queries) else { return nil }
-        
+
         var urlRequest = URLRequest(url: url)
-        
+
         urlRequest.httpMethod = "GET"
         urlRequest.addValue("KakaoAK \(Bundle.main.KAKAO_REST_API_KEY)", forHTTPHeaderField: "Authorization")
-        
+
         return urlRequest
     }
 }
