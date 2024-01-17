@@ -30,10 +30,10 @@
 		63DF20FB2970E1A1005DF7D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63DF20F92970E1A1005DF7D1 /* LaunchScreen.storyboard */; };
 		AC02E17C2A6F703D00C6A91B /* BoxOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC02E17B2A6F703D00C6A91B /* BoxOffice.swift */; };
 		AC0546C22B5609C10087B7F7 /* DecodingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546C12B5609C10087B7F7 /* DecodingManagerTests.swift */; };
+		AC0546D52B5609E70087B7F7 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */; };
 		AC0546D72B5609F70087B7F7 /* Requesters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0546D62B5609F70087B7F7 /* Requesters.swift */; };
 		AC11E7DF2A729341008A84B0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11E7DE2A729341008A84B0 /* Movie.swift */; };
 		AC11E7E52A729FE3008A84B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11E7E42A729FE3008A84B0 /* NetworkManager.swift */; };
-		AC5A0F3D2B47950300DB9D78 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */; };
 		AC4A50FC2B4D6D12005D5DB3 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */; };
 		AC9BDB3E2A78D083000FA75F /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC9BDB3D2A78D083000FA75F /* APIKey.plist */; };
 		AC9CEA692A8A733C00DD74F4 /* MovieScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */; };
@@ -86,10 +86,10 @@
 		AC0546942B5608BE0087B7F7 /* BoxOffice.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BoxOffice.xctestplan; sourceTree = "<group>"; };
 		AC0546992B5609350087B7F7 /* BoxOfficeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxOfficeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0546C12B5609C10087B7F7 /* DecodingManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingManagerTests.swift; sourceTree = "<group>"; };
+		AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		AC0546D62B5609F70087B7F7 /* Requesters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requesters.swift; sourceTree = "<group>"; };
 		AC11E7DE2A729341008A84B0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		AC11E7E42A729FE3008A84B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		AC9BDB3D2A78D083000FA75F /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScrollView.swift; sourceTree = "<group>"; };
@@ -221,7 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				AC0546942B5608BE0087B7F7 /* BoxOffice.xctestplan */,
+				AC0546C62B5609D90087B7F7 /* Network */,
 				AC0546D62B5609F70087B7F7 /* Requesters.swift */,
+				AC0546D32B5609E70087B7F7 /* NetworkManagerTests */,
 				AC0546C02B5609C10087B7F7 /* DecodingManagerTests */,
 			);
 			path = BoxOfficeTests;
@@ -238,6 +240,12 @@
 			isa = PBXGroup;
 			children = (
 			);
+		AC0546D32B5609E70087B7F7 /* NetworkManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */,
+			);
+			path = NetworkManagerTests;
 			sourceTree = "<group>";
 		};
 		AC4A50F62B4D6C99005D5DB3 /* Network */ = {
@@ -251,14 +259,6 @@
 				3CF5610E2A73E7830048D14D /* URL+.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		AC5A0F3B2B4794CE00DB9D78 /* NetworkManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */,
-			);
-			path = NetworkManagerTests;
 			sourceTree = "<group>";
 		};
 		AC6796AC2A77A00000DADDBA /* Utility */ = {
@@ -436,9 +436,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC5A0F3D2B47950300DB9D78 /* NetworkManagerTests.swift in Sources */,
 				AC0546C22B5609C10087B7F7 /* DecodingManagerTests.swift in Sources */,
 				AC0546D72B5609F70087B7F7 /* Requesters.swift in Sources */,
+				AC0546D52B5609E70087B7F7 /* NetworkManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
