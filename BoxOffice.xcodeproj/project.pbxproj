@@ -33,6 +33,7 @@
 		AC11E7DF2A729341008A84B0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11E7DE2A729341008A84B0 /* Movie.swift */; };
 		AC11E7E52A729FE3008A84B0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC11E7E42A729FE3008A84B0 /* NetworkManager.swift */; };
 		AC5A0F3D2B47950300DB9D78 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */; };
+		AC4A50FC2B4D6D12005D5DB3 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */; };
 		AC9BDB3E2A78D083000FA75F /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC9BDB3D2A78D083000FA75F /* APIKey.plist */; };
 		AC9CEA692A8A733C00DD74F4 /* MovieScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */; };
 		ACA69B9A2B51333F00F35279 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA69B992B51333F00F35279 /* Requestable.swift */; };
@@ -81,10 +82,13 @@
 		63DF20FA2970E1A1005DF7D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63DF20FC2970E1A1005DF7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC02E17B2A6F703D00C6A91B /* BoxOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOffice.swift; sourceTree = "<group>"; };
+		AC0546942B5608BE0087B7F7 /* BoxOffice.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BoxOffice.xctestplan; sourceTree = "<group>"; };
+		AC0546992B5609350087B7F7 /* BoxOfficeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxOfficeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0546C12B5609C10087B7F7 /* DecodingManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingManagerTests.swift; sourceTree = "<group>"; };
 		AC11E7DE2A729341008A84B0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		AC11E7E42A729FE3008A84B0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AC5A0F3C2B47950300DB9D78 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		AC9BDB3D2A78D083000FA75F /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScrollView.swift; sourceTree = "<group>"; };
 		ACA69B992B51333F00F35279 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				AC4A50F62B4D6C99005D5DB3 /* Network */,
 				AC11E7E42A729FE3008A84B0 /* NetworkManager.swift */,
 				3C35A80C2A6F9937008BB5C2 /* DecodingManager.swift */,
+				AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */,
 				3CB38E992A7FEB6C0070E63C /* TargetDate.swift */,
 				3CB38E9B2A7FF7690070E63C /* CountFormatter.swift */,
 				3C77A5082A8B9A4E0053EE15 /* String+.swift */,
@@ -411,6 +416,7 @@
 				3CB38E9A2A7FEB6C0070E63C /* TargetDate.swift in Sources */,
 				ACA69BA22B54F9B200F35279 /* HTTPHeader.swift in Sources */,
 				3C9660672A8A6CA6008564C0 /* MovieInformationViewController.swift in Sources */,
+				AC4A50FC2B4D6D12005D5DB3 /* ImageManager.swift in Sources */,
 				ACDAD3E22A875953000604B2 /* RankOldOrNew.swift in Sources */,
 				ACF8A0982A8B077400F49A87 /* MovieDetailStackView.swift in Sources */,
 				ACA69B9C2B51337000F35279 /* NetworkManageable.swift in Sources */,
