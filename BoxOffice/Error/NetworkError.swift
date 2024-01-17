@@ -11,6 +11,7 @@ enum NetworkError: LocalizedError {
     case requestFailed
     case invalidResponse
     case noData
+    case invalidURL
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum NetworkError: LocalizedError {
             return "유효하지 않은 응답이거나 성공적인 응답이 아닙니다."
         case .noData:
             return "데이터가 없습니다."
+        case .invalidURL:
+            return "유효하지 않은 URL입니다."
         }
     }
 }
