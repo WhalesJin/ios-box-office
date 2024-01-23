@@ -100,7 +100,7 @@ final class BoxOfficeManagerTests: XCTestCase {
         }
     }
     
-    func testFetchMovieImageDataFailure() {
+    func testFetchMovieImageDataDecodingFailure() {
         let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
         //let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample")!
         
@@ -113,6 +113,20 @@ final class BoxOfficeManagerTests: XCTestCase {
                 XCTFail()
             case .failure(let error):
                 XCTAssertEqual(error as! DataError, DataError.failedDecoding)
+            }
+        }
+    }
+    
+    func testFetchMovieImageDataNetworkFailure() {
+        let networkManager = NetworkManager(requester: NoDataRequester())
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
+        
+        boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
+            switch result {
+            case .success:
+                XCTFail()
+            case .failure(let error):
+                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
             }
         }
     }
