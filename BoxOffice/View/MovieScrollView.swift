@@ -62,9 +62,8 @@ extension MovieScrollView {
     }
     
     private func configureMovieInformationStackView() {
-        if let movieInformation = movieInformation {
-            movieInformationStackView = MovieInformationStackView(frame: .zero, movieInformation: movieInformation)
-        }
+        guard let movieInformation = movieInformation else { return }
+        movieInformationStackView = MovieInformationStackView(frame: .zero, movieInformation: movieInformation)
     }
     
     private func setUpConstraints() {
