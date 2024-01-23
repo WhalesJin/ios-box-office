@@ -44,7 +44,7 @@ final class NetworkManagerTests: XCTestCase {
     }
     
     func testFailureWithInvalidStateCode() {
-        failureCase(description: "invalidResponse",
+        failureCase(description: "invalidStateCode",
                     requester: InvalidStateCodeRequester(),
                     networkError: .invalidResponse)
     }
