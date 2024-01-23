@@ -18,7 +18,6 @@ final class BoxOfficeManagerTests: XCTestCase {
 
         let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
         //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
-        //let networkManager = MockSuccessNetworkManager(requester: SuccessRequester(data: dataAsset.data)
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
 
         let expectation = "경관의 피"
@@ -79,31 +78,26 @@ final class BoxOfficeManagerTests: XCTestCase {
             }
         }
     }
-
+    
     func testFetchMovieImageData() {
-        //let expectation = XCTestExpectation(description: "fetchMovieImage")
         let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample")!
-        let image = UIImage(named: "movie_sample_image")
-        let imageData: Data = image!.jpegData(compressionQuality: 1)!
-        
         let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
-        boxOfficeManager = BoxOfficeManager(networkManager: networkManager,
-                                            imageManager: ImageManager(networkManager: NetworkManager(requester: SuccessRequester(data: imageData)))
-                                            )
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
+
+        let expectation = URL(string: "https://www.imageUrl.com")
+
         boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
             switch result {
-            case .success(let image):
-                XCTAssertNotNil(image)
+            case .success(let data):
+                XCTAssertEqual(data!, expectation)
             case .failure:
                 XCTFail()
             }
         }
     }
     
-    func testFetchMovieImageDataDecodingFailure() {
+    func testFetchMovieImageDataFailure() {
         let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
-        //let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample")!
-        
         let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
         
@@ -113,20 +107,6 @@ final class BoxOfficeManagerTests: XCTestCase {
                 XCTFail()
             case .failure(let error):
                 XCTAssertEqual(error as! DataError, DataError.failedDecoding)
-            }
-        }
-    }
-    
-    func testFetchMovieImageDataNetworkFailure() {
-        let networkManager = NetworkManager(requester: NoDataRequester())
-        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
-        
-        boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
-            switch result {
-            case .success:
-                XCTFail()
-            case .failure(let error):
-                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
             }
         }
     }
