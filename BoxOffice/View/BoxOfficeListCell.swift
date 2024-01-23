@@ -1,5 +1,5 @@
 //
-//  BoxOfficeCell.swift
+//  BoxOfficeListCell.swift
 //  BoxOffice
 //
 //  Created by Dasan & Whales on 2023/08/05.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BoxOfficeCell: UICollectionViewListCell {
+final class BoxOfficeListCell: UICollectionViewListCell {
     static let identifier = "boxOfficeCell"
     
     private let rankLabel: UILabel = {
@@ -92,16 +92,15 @@ final class BoxOfficeCell: UICollectionViewListCell {
         rankIntensityLabel.text = boxOfficeData.rankIntensity
         movieNameLabel.text = boxOfficeData.movieName
         
-        guard let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)),
-              let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate))
-        else { return }
+        let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
+        let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
         
         audienceLabel.text = "오늘 \(audienceCount) / 총 \(audienceAccumulate)"
         rankIntensityLabel.attributedText = rankIntensityText
     }
 }
 
-extension BoxOfficeCell {
+extension BoxOfficeListCell {
     private func configureUI() {
         rankStackView.addArrangedSubview(rankLabel)
         rankStackView.addArrangedSubview(rankIntensityLabel)
