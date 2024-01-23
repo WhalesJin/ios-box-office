@@ -94,10 +94,10 @@ extension MovieInformationViewController {
         view.addSubview(movieScrollView)
         
         NSLayoutConstraint.activate([
-            movieScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            movieScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             movieScrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             movieScrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            movieScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            movieScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
