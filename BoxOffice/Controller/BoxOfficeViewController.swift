@@ -90,14 +90,14 @@ extension BoxOfficeViewController {
     }
     
     private func createGridLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
-                                             heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),
+                                              heightDimension: .fractionalWidth(1/2))
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(0.2))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/1),
+                                               heightDimension: .fractionalWidth(1/2))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
@@ -111,7 +111,7 @@ extension BoxOfficeViewController {
     
     private func configureDataSource(style: CollectionViewStyle) {
         if style == .list {
-            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeCell, BoxOfficeData> { (cell, indexPath, item) in
+            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeListCell, BoxOfficeData> { (cell, indexPath, item) in
                 let rankIntensityText = self.configureRankIntensity(with: item)
                 cell.updateLabel(with: item, rankIntensityText)
             }
