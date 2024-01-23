@@ -10,6 +10,7 @@ import OSLog
 
 final class MovieInformationViewController: UIViewController {
     private let boxOfficeManager = BoxOfficeManager()
+    private let imageManager = ImageManager()
     private var movieInformation: MovieInformation?
     private var movieCode: String?
     
@@ -57,10 +58,19 @@ final class MovieInformationViewController: UIViewController {
         
         boxOfficeManager.fetchMovieImageData(with: keyword) { result in
             switch result {
-            case .success(let image):
+            case .success(let url):
                 DispatchQueue.main.async {
-                    self.stopActivityIndicator()
-                    self.configureUI(with: image)
+                    self.imageManager.fetchImage(url: url) { result in
+                        switch result {
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                self.stopActivityIndicator()
+                                self.configureUI(with: image)
+                            }
+                        case .failure(let error):
+                            os_log("%{public}@", type: .default, error.localizedDescription)
+                        }
+                    }
                 }
             case .failure(let error):
                 os_log("%{public}@", type: .default, error.localizedDescription)
