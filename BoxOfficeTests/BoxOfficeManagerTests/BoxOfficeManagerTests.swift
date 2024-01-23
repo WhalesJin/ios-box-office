@@ -8,17 +8,22 @@
 import XCTest
 @testable import BoxOffice
 
+//MockSuccessNetworkManager으로 테스트하는 것과 Requester 테스트하는 것의 차이
+
 final class BoxOfficeManagerTests: XCTestCase {
-    private var boxOfficeManager: StubBoxOfficeManager!
+    private var boxOfficeManager: BoxOfficeManager!
     
     func testFetchBoxOfficeData() {
         let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
-        let networkManager = MockSuccessNetworkManager(requester: SuccessRequester(data: dataAsset.data))
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
-        
+
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
+        //let networkManager = MockSuccessNetworkManager(requester: SuccessRequester(data: dataAsset.data)
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
+
         let expectation = "경관의 피"
         
-        boxOfficeManager.fetchBoxOfficeData(with: "targetDate") { result in
+        boxOfficeManager.fetchBoxOfficeData(with: TargetDate(dayFromNow: 0)) { result in
             switch result {
             case .success(let data):
                 XCTAssertEqual(data!.first?.movieName, expectation)
@@ -29,27 +34,28 @@ final class BoxOfficeManagerTests: XCTestCase {
     }
     
     func testFetchBoxOfficeDataFailure() {
-        let networkManager = MockFailureNetworkManager(error: .noData)
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
+        let dataAsset: NSDataAsset = NSDataAsset(name: "movie_Info_sample")! //다른 타입의 JSON
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
 
-        boxOfficeManager.fetchBoxOfficeData(with: "targetDate") { result in
+        boxOfficeManager.fetchBoxOfficeData(with: TargetDate(dayFromNow: 0)) { result in
             switch result {
             case .success:
                 XCTFail()
             case .failure(let error):
-                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
+                XCTAssertEqual(error as! DataError, DataError.failedDecoding)
             }
         }
     }
     
     func testFetchMovieData() {
         let dataAsset: NSDataAsset = NSDataAsset(name: "movie_Info_sample")!
-        let networkManager = MockSuccessNetworkManager(requester: SuccessRequester(data: dataAsset.data))
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
 
         let expectation = "이병헌"
-        
-        boxOfficeManager.fetchMovieData(with: "movieCode") { result in
+
+        boxOfficeManager.fetchMovieData(with: "123456"){ result in
             switch result {
             case .success(let data):
                 XCTAssertEqual(data!.actors.first?.personName, expectation)
@@ -58,26 +64,32 @@ final class BoxOfficeManagerTests: XCTestCase {
             }
         }
     }
-
+    
     func testFetchMovieDataFailure() {
-        let networkManager = MockFailureNetworkManager(error: .noData)
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
+        let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
 
         boxOfficeManager.fetchMovieData(with: "movieCode") { result in
             switch result {
             case .success:
                 XCTFail()
             case .failure(let error):
-                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
+                XCTAssertEqual(error as! DataError, DataError.failedDecoding)
             }
         }
     }
 
     func testFetchMovieImageData() {
+        //let expectation = XCTestExpectation(description: "fetchMovieImage")
         let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample")!
-        let networkManager = MockSuccessNetworkManager(requester: SuccessRequester(data: dataAsset.data))
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
-
+        let image = UIImage(named: "movie_sample_image")
+        let imageData: Data = image!.jpegData(compressionQuality: 1)!
+        
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager,
+                                            imageManager: ImageManager(networkManager: NetworkManager(requester: SuccessRequester(data: imageData)))
+                                            )
         boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
             switch result {
             case .success(let image):
@@ -89,15 +101,18 @@ final class BoxOfficeManagerTests: XCTestCase {
     }
     
     func testFetchMovieImageDataFailure() {
-        let networkManager = MockFailureNetworkManager(error: .noData)
-        boxOfficeManager = StubBoxOfficeManager(networkManager: networkManager)
+        let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
+        //let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample")!
+        
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
         
         boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
             switch result {
             case .success:
                 XCTFail()
             case .failure(let error):
-                XCTAssertEqual(error as! NetworkError, NetworkError.noData)
+                XCTAssertEqual(error as! DataError, DataError.failedDecoding)
             }
         }
     }
