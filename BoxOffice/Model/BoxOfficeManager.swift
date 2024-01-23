@@ -9,15 +9,9 @@ import UIKit
 
 final class BoxOfficeManager {
     private let networkManager: NetworkManageable
-    private let imageManager: ImageManager
-    //let imageManager = ImageManager(networkManager: networkManager)
     
-    init(
-        networkManager: NetworkManageable = NetworkManager(requester: DefaultRequester()),
-        imageManager: ImageManager = ImageManager()
-    ) {
+    init(networkManager: NetworkManageable = NetworkManager(requester: DefaultRequester())) {
         self.networkManager = networkManager
-        self.imageManager = imageManager
     }
     
     func fetchBoxOfficeData(with targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeData]?, Error>) -> Void) {
@@ -36,8 +30,6 @@ final class BoxOfficeManager {
     }
     
     func fetchMovieData(with movieCode: String, completion: @escaping (Result<MovieInformation?, Error>) -> Void) {
-        //let networkManager = NetworkManager()
-
         let _ = networkManager.fetchData(from: KobisAPI.movie(movieCode: movieCode).url,
                                  method: .get,
                                  header: nil) { result in
@@ -52,8 +44,7 @@ final class BoxOfficeManager {
         }
     }
     
-    func fetchMovieImageData(with keyword: String, completion: @escaping (Result<UIImage?, Error>) -> Void) {
-        //let imageManager = ImageManager(networkManager: networkManager)
+    func fetchMovieImageData(with keyword: String, completion: @escaping (Result<URL?, Error>) -> Void) {
         var movieImageURLString: String?
 
         let kakaoAPI = KakaoAPI.image(keyword: keyword)
@@ -69,10 +60,7 @@ final class BoxOfficeManager {
                 guard let movieImageURLString = movieImageURLString,
                       let movieImageURL = URL(string: movieImageURLString) else { return }
 
-                self.imageManager.fetchImage(url: movieImageURL) { result in
-                    guard let image = try? result.get() else { return }
-                    completion(.success(image))
-                }
+                completion(.success(movieImageURL))
             } catch {
                 completion(.failure(error))
             }
