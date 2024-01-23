@@ -79,9 +79,8 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         rankIntensityLabel.text = boxOfficeData.rankIntensity
         movieNameLabel.text = boxOfficeData.movieName
         
-        guard let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)),
-              let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate))
-        else { return }
+        let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
+        let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
         
         audienceLabel.text = "오늘 \(audienceCount) / 총 \(audienceAccumulate)"
         rankIntensityLabel.attributedText = rankIntensityText
