@@ -1,0 +1,514 @@
+{
+  "Query": "",
+  "KMAQuery": "인터 스텔라 인터스텔라",
+  "TotalCount": 2,
+  "Data": [
+    {
+      "CollName": "kmdb_new2",
+      "TotalCount": 2,
+      "Count": 2,
+      "Result": [
+        {
+          "DOCID": "F32372",
+          "movieId": "F",
+          "movieSeq": "32372",
+          "title": "  !HS 인터스텔라 !HE ",
+          "titleEng": "Interstellar",
+          "titleOrg": "Interstellar",
+          "titleEtc": "인터스텔라^Interstellar^Interstellar^Interstellar",
+          "prodYear": "2014",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "크리스토퍼 놀란",
+                "directorEnNm": "Christopher Nolan",
+                "directorId": "00062840"
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "매슈 매코너헤이",
+                "actorEnNm": "Matthew McConaughey",
+                "actorId": "00049133"
+              },
+              {
+                "actorNm": "제시카 차스테인",
+                "actorEnNm": "Jessica Chastain",
+                "actorId": "00158332"
+              },
+              {
+                "actorNm": "앤 해서웨이",
+                "actorEnNm": "Anne Hathaway",
+                "actorId": "00055673"
+              },
+              {
+                "actorNm": "맷 데이먼",
+                "actorEnNm": "Matt Damon",
+                "actorId": "00049593"
+              },
+              {
+                "actorNm": "마이클 케인",
+                "actorEnNm": "Micahel Caine",
+                "actorId": "00102061"
+              },
+              {
+                "actorNm": "캐이시 애플렉",
+                "actorEnNm": "Casey Affleck",
+                "actorId": "00061006"
+              },
+              {
+                "actorNm": "빌 아윈",
+                "actorEnNm": "Bill Irwin",
+                "actorId": "00058402"
+              }
+            ]
+          },
+          "nation": "미국,영국",
+          "company": "Paramount Pictures,Legendary Pictures",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "“우린 답을 찾을 거야, 늘 그랬듯이”세계 각국의 정부와 경제가 완전히 붕괴된 미래가 다가온다.  지난 20세기에 범한 잘못이 전 세계적인 식량 부족을 불러왔고, NASA도 해체되었다.  이때 시공간에 불가사의한 틈이 열리고, 남은 자들에게는 이 곳을 탐험해 인류를 구해야 하는 임무가 지워진다.  사랑하는 가족들을 뒤로 한 채 인류라는 더 큰 가족을 위해, 그들은 이제 희망을 찾아 우주로 간다.  그리고 우린 답을 찾을 것이다. 늘 그랬듯이…"
+              }
+            ]
+          },
+          "runtime": "169",
+          "rating": "12세관람가",
+          "genre": "SF",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/32372",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20141011",
+          "repRlsDate": "20141106",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y||0",
+                "ratingDate": "20141011||0",
+                "ratingNo": "2014-MF01102||0",
+                "ratingGrade": "12세관람가||12세관람가",
+                "releaseDate": "20141106||20160114",
+                "runtime": "169||169"
+              }
+            ]
+          },
+          "keywords": "우주,블랙홀,우주배경,우주탐사,웜홀,상대성이론,재개봉",
+          "posters": "http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010393.JPG|http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010396.jpg|http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010395.jpg|http://file.koreafilm.or.kr/thm/02/00/02/69/tn_DPF006739.JPG|http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010394.jpg",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "크리스토퍼 놀란",
+                "staffEnNm": "Christopher Nolan",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00062840"
+              },
+              {
+                "staffNm": "조나단 놀란",
+                "staffEnNm": "Jonathan Nolan",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00091172"
+              },
+              {
+                "staffNm": "크리스토퍼 놀란",
+                "staffEnNm": "Christopher Nolan",
+                "staffRoleGroup": "각본",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00062840"
+              },
+              {
+                "staffNm": "매슈 매코너헤이",
+                "staffEnNm": "Matthew McConaughey",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049133"
+              },
+              {
+                "staffNm": "제시카 차스테인",
+                "staffEnNm": "Jessica Chastain",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00158332"
+              },
+              {
+                "staffNm": "앤 해서웨이",
+                "staffEnNm": "Anne Hathaway",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00055673"
+              },
+              {
+                "staffNm": "맷 데이먼",
+                "staffEnNm": "Matt Damon",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00049593"
+              },
+              {
+                "staffNm": "마이클 케인",
+                "staffEnNm": "Micahel Caine",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00102061"
+              },
+              {
+                "staffNm": "캐이시 애플렉",
+                "staffEnNm": "Casey Affleck",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00061006"
+              },
+              {
+                "staffNm": "빌 아윈",
+                "staffEnNm": "Bill Irwin",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00058402"
+              },
+              {
+                "staffNm": "린다 오스트",
+                "staffEnNm": "Lynda Obst",
+                "staffRoleGroup": "프로듀서",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00098160"
+              },
+              {
+                "staffNm": "엠마 토마스",
+                "staffEnNm": "Emma Thomas",
+                "staffRoleGroup": "프로듀서",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00069879"
+              },
+              {
+                "staffNm": "크리스토퍼 놀란",
+                "staffEnNm": "Christopher Nolan",
+                "staffRoleGroup": "프로듀서",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00062840"
+              },
+              {
+                "staffNm": "호이트 반 호이테마",
+                "staffEnNm": "Hoyte Van Hoytema",
+                "staffRoleGroup": "촬영",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00084043"
+              },
+              {
+                "staffNm": "리 스미스",
+                "staffEnNm": "Lee Smith",
+                "staffRoleGroup": "편집",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00096126"
+              },
+              {
+                "staffNm": "한스 짐머",
+                "staffEnNm": "Hans Zimmer",
+                "staffRoleGroup": "음악",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": "00075672"
+              },
+              {
+                "staffNm": "Paramount Pictures",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "Legendary Pictures",
+                "staffEnNm": "",
+                "staffRoleGroup": "제작사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "인터스텔라 [1차]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK032604_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [공식2차]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK033789_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [3차]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK034919_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [메인]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK035199_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [중력]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK035224_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [물리GV 영상]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK035258_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [4dx_trailer]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK035288_P02.mp4"
+              },
+              {
+                "vodClass": "인터스텔라 [200배 즐기기영상]",
+                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK035294_P02.mp4"
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "아카데미 시상식(2015) : 시각효과상 - 폴 프랭클린|올해의 영화상(2015) : 외국어영화상 -",
+          "Awards2": "",
+          "regDate": "20140114",
+          "modDate": "20211202",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20149120"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20149120"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        },
+        {
+          "DOCID": "F35557",
+          "movieId": "F",
+          "movieSeq": "35557",
+          "title": "  !HS 인터스텔라 !HE : 우주 전쟁",
+          "titleEng": "Interstellar Wars",
+          "titleOrg": "Interstellar Wars",
+          "titleEtc": "인터스텔라:우주전쟁^인터스텔라: 우주 전쟁^Interstellar Wars^Interstellar Wars^Interstellar Wars",
+          "prodYear": "2015",
+          "directors": {
+            "director": [
+              {
+                "directorNm": "마를린 맥코헨",
+                "directorEnNm": "",
+                "directorId": ""
+              }
+            ]
+          },
+          "actors": {
+            "actor": [
+              {
+                "actorNm": "애리언 랠리",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "마를린 맥코헨",
+                "actorEnNm": "",
+                "actorId": ""
+              },
+              {
+                "actorNm": "토비 마카",
+                "actorEnNm": "",
+                "actorId": ""
+              }
+            ]
+          },
+          "nation": "미국",
+          "company": "",
+          "plots": {
+            "plot": [
+              {
+                "plotLang": "한국어",
+                "plotText": "어느 날 나타난 UFO가 지구를 공격하며 사람들을 바이러스에 감염시켜 좀비로 만들고 다른 사람들을 공격하게 되자, 이에 맞서 지구를 지키기 위해 싸우는 이야기를 담은 SF 영화."
+              }
+            ]
+          },
+          "runtime": "83",
+          "rating": "15세관람가",
+          "genre": "SF",
+          "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/35557",
+          "type": "극영화",
+          "use": "극장용",
+          "episodes": "",
+          "ratedYn": "Y",
+          "repRatDate": "20160422",
+          "repRlsDate": "20160609",
+          "ratings": {
+            "rating": [
+              {
+                "ratingMain": "Y",
+                "ratingDate": "20160422",
+                "ratingNo": "2016-MF00620",
+                "ratingGrade": "15세관람가",
+                "releaseDate": "20160609",
+                "runtime": "83"
+              }
+            ]
+          },
+          "keywords": "",
+          "posters": "",
+          "stlls": "",
+          "staffs": {
+            "staff": [
+              {
+                "staffNm": "마를린 맥코헨",
+                "staffEnNm": "",
+                "staffRoleGroup": "감독",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "애리언 랠리",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "마를린 맥코헨",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "토비 마카",
+                "staffEnNm": "",
+                "staffRoleGroup": "출연",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "(주)소나무픽쳐스",
+                "staffEnNm": "",
+                "staffRoleGroup": "배급사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              },
+              {
+                "staffNm": "(주)소나무픽쳐스",
+                "staffEnNm": "",
+                "staffRoleGroup": "수입사",
+                "staffRole": "",
+                "staffEtc": "",
+                "staffId": ""
+              }
+            ]
+          },
+          "vods": {
+            "vod": [
+              {
+                "vodClass": "",
+                "vodUrl": ""
+              }
+            ]
+          },
+          "openThtr": "",
+          "stat": [
+            {
+              "screenArea": "",
+              "screenCnt": "",
+              "salesAcc": "",
+              "audiAcc": "",
+              "statSouce": "",
+              "statDate": ""
+            }
+          ],
+          "screenArea": "",
+          "screenCnt": "",
+          "salesAcc": "",
+          "audiAcc": "",
+          "statSouce": "",
+          "statDate": "",
+          "themeSong": "",
+          "soundtrack": "",
+          "fLocation": "",
+          "Awards1": "",
+          "Awards2": "",
+          "regDate": "20160426",
+          "modDate": "20211124",
+          "Codes": {
+            "Code": [
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20164823"
+              },
+              {
+                "CodeNm": "FIMS",
+                "CodeNo": "20164823"
+              }
+            ]
+          },
+          "CommCodes": {
+            "CommCode": [
+              {
+                "CommCodeNm": "FIMS",
+                "CommCodeNo": "20164823"
+              },
+              {
+                "CommCodeNm": "FIMS",
+                "CommCodeNo": "20164823"
+              }
+            ]
+          },
+          "ALIAS": "srcKmdb2"
+        }
+      ]
+    }
+  ]
+}

@@ -8,8 +8,6 @@
 import XCTest
 @testable import BoxOffice
 
-//MockSuccessNetworkManager으로 테스트하는 것과 Requester 테스트하는 것의 차이
-
 final class BoxOfficeManagerTests: XCTestCase {
     private var boxOfficeManager: BoxOfficeManager!
     
@@ -123,6 +121,46 @@ final class BoxOfficeManagerTests: XCTestCase {
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
         
         boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
+            switch result {
+            case .success:
+                XCTFail()
+            case .failure(let error):
+                XCTAssertEqual(error as! DataError, DataError.failedDecoding)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 0.5)
+    }
+    
+    func testFetchMovieImageData2() {
+        let expectation = XCTestExpectation(description: "fetchMovieImageData2")
+        let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample2")!
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
+
+        let expectationImageURL = URL(string: "http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010393.JPG")
+
+        boxOfficeManager.fetchMovieImageData2(with: ("title", "englishTitle")) { result in
+            switch result {
+            case .success(let data):
+                XCTAssertEqual(data!, expectationImageURL)
+                expectation.fulfill()
+            case .failure:
+                XCTFail()
+            }
+        }
+        wait(for: [expectation], timeout: 0.5)
+    }
+    
+    func testFetchMovieImageDataFailure2() {
+        let expectation = XCTestExpectation(description: "fetchMovieImageDataFailure2")
+        let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
+        let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
+        //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
+        boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
+        
+        boxOfficeManager.fetchMovieImageData2(with: ("title", "englishTitle")) { result in
             switch result {
             case .success:
                 XCTFail()
