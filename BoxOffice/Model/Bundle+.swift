@@ -31,4 +31,16 @@ extension Bundle {
         
         return key
     }
+    
+    var KMDB_REST_API_KEY: String {
+        guard let file = self.path(forResource: "APIKey", ofType: "plist") else { return "" }
+
+        guard let resource = NSDictionary(contentsOfFile: file) else { return "" }
+
+        guard let key = resource["KMDB_REST_API_KEY"] as? String else {
+            fatalError("KMDB_REST_API_KEY error")
+        }
+        
+        return key
+    }
 }
