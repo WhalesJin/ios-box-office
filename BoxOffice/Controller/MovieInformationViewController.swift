@@ -54,9 +54,9 @@ final class MovieInformationViewController: UIViewController {
     
     private func loadPosterImage() {
         let movieName = movieInformation?.movieName ?? ""
-        let keyword = movieName + " 영화 포스터"
+        let movieEnglishName = movieInformation?.movieEnglishName ?? ""
         
-        boxOfficeManager.fetchMovieImageData(with: keyword) { result in
+        boxOfficeManager.fetchMovieImageData2(with: (movieName, movieEnglishName)) { result in
             switch result {
             case .success(let url):
                 DispatchQueue.main.async {

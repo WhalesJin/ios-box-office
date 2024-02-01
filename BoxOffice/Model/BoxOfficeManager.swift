@@ -66,4 +66,29 @@ final class BoxOfficeManager {
             }
         }
     }
+    
+    func fetchMovieImageData2(with keyword: (String, String), completion: @escaping (Result<URL?, Error>) -> Void) {
+        let koreafilmAPI = KoreafilmAPI.movie(title: keyword.0, englishTitle: keyword.1)
+        let _ = networkManager.fetchData(from: koreafilmAPI.url,
+                                 method: .get,
+                                 header: nil) { result in
+            do {
+                let decodedData = try DecodingManager.decodeJSON(type: KMDbMovieImage.self, data: result.get())
+                var movieData = decodedData.data.first
+                
+                movieData?.result.sort(by: { a, b in
+                    a.productionYear > b.productionYear
+                })
+                
+                if let movieResult = movieData?.result,
+                   let moviePosterURLs = movieResult.first?.posters,
+                   let movieImageURLString = moviePosterURLs.split(separator: "|").first,
+                   let movieImageURL = URL(string: String(movieImageURLString)) {
+                    completion(.success(movieImageURL))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 }
