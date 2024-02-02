@@ -90,23 +90,26 @@ extension BoxOfficeViewController {
     }
     
     private func createGridLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2),
-                                              heightDimension: .fractionalWidth(1/2))
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/1),
-                                               heightDimension: .fractionalWidth(1/2))
-        
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        
-        return layout
+        UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+            let wideMode = layoutEnvironment.container.effectiveContentSize.width > 800
+            let columns = wideMode ? 4 : 2
+            let fractionWidth: CGFloat = 1.0/CGFloat(columns)
+            
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionWidth),
+                                                  heightDimension: .fractionalHeight(1))
+            
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = .init(top: 2, leading: 2, bottom: 2, trailing: 2)
+            
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .fractionalWidth(fractionWidth))
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                           subitem: item,
+                                                           count: columns)
+            
+            return NSCollectionLayoutSection(group: group)
+        }
     }
     
     private func configureDataSource(style: CollectionViewStyle) {
