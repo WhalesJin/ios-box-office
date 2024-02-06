@@ -32,7 +32,7 @@ final class BoxOfficeListCell: UICollectionViewListCell {
     
     private let movieNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 1
@@ -41,6 +41,16 @@ final class BoxOfficeListCell: UICollectionViewListCell {
     }()
     
     private let audienceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .left
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 1
+        
+        return label
+    }()
+    
+    private let openingDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textAlignment = .left
@@ -69,6 +79,7 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
+        stackView.spacing = 10
         
         return stackView
     }()
@@ -91,11 +102,12 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         rankLabel.text = boxOfficeData.rank
         rankIntensityLabel.text = boxOfficeData.rankIntensity
         movieNameLabel.text = boxOfficeData.movieName
+        openingDateLabel.text = "개봉일: \(boxOfficeData.openingDate)"
         
         let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
         let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
         
-        audienceLabel.text = "오늘 \(audienceCount) / 총 \(audienceAccumulate)"
+        audienceLabel.text = "관객수: \(audienceCount) 명 (누적 \(audienceAccumulate) 명)"
         rankIntensityLabel.attributedText = rankIntensityText
     }
 }
@@ -106,6 +118,7 @@ extension BoxOfficeListCell {
         rankStackView.addArrangedSubview(rankIntensityLabel)
         titleStackView.addArrangedSubview(movieNameLabel)
         titleStackView.addArrangedSubview(audienceLabel)
+        titleStackView.addArrangedSubview(openingDateLabel)
         stackView.addArrangedSubview(rankStackView)
         stackView.addArrangedSubview(titleStackView)
         

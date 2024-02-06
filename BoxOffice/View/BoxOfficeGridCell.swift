@@ -32,7 +32,7 @@ final class BoxOfficeGridCell: UICollectionViewCell {
     
     private let movieNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 2
@@ -46,6 +46,16 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
         label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 2
+        
+        return label
+    }()
+    
+    private let openingDateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .left
+        label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 1
         
         return label
@@ -78,11 +88,12 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         rankLabel.text = boxOfficeData.rank
         rankIntensityLabel.text = boxOfficeData.rankIntensity
         movieNameLabel.text = boxOfficeData.movieName
+        openingDateLabel.text = "개봉일: \(boxOfficeData.openingDate)"
         
         let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
         let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
         
-        audienceLabel.text = "오늘 \(audienceCount) / 총 \(audienceAccumulate)"
+        audienceLabel.text = "관객수: \(audienceCount) 명 \n(누적 \(audienceAccumulate) 명)"
         rankIntensityLabel.attributedText = rankIntensityText
     }
 }
@@ -90,11 +101,14 @@ final class BoxOfficeGridCell: UICollectionViewCell {
 extension BoxOfficeGridCell {
     private func configureUI() {
         self.layer.borderWidth = 1
+        self.layer.cornerRadius = 5
+        self.layer.borderColor = UIColor.systemGray4.cgColor
         
         stackView.addArrangedSubview(rankLabel)
         stackView.addArrangedSubview(movieNameLabel)
         stackView.addArrangedSubview(rankIntensityLabel)
         stackView.addArrangedSubview(audienceLabel)
+        stackView.addArrangedSubview(openingDateLabel)
         
         contentView.addSubview(stackView)
         setUpStackViewConstraints()

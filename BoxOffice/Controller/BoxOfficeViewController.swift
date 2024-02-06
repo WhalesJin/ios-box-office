@@ -35,7 +35,6 @@ final class BoxOfficeViewController: UIViewController {
         loadData()
         configureDataSource(style: collectionViewStyle)
         configureNavigationItem(title: yesterday.formattedWithHyphen())
-        configureToolbar()
         
         collectionView.delegate = self
     }
@@ -99,7 +98,7 @@ extension BoxOfficeViewController {
                                                   heightDimension: .fractionalHeight(1))
             
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(top: 2, leading: 2, bottom: 2, trailing: 2)
+            item.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                    heightDimension: .fractionalWidth(fractionWidth))
@@ -175,48 +174,27 @@ extension BoxOfficeViewController {
     
     private func configureNavigationItem(title: String) {
         navigationItem.title = title
+        
+        setViewModeButton(currentStyle: collectionViewStyle)
     }
     
-    private func configureToolbar() {
-        navigationController?.isToolbarHidden = false
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let changeViewModeButton = UIBarButtonItem(title: "화면 모드 변경", style: .plain, target: self, action: #selector(tappedChangeViewModeButton))
-        
-        var items = [UIBarButtonItem]()
-        
-        items.append(flexibleSpace)
-        items.append(changeViewModeButton)
-        items.append(flexibleSpace)
-        
-        toolbarItems = items
-    }
-    
-    @objc func tappedChangeViewModeButton() {
-        showAlertController(currentStyle: collectionViewStyle)
-    }
-    
-    private func showAlertController(currentStyle: CollectionViewStyle) {
-        var message: String {
+    private func setViewModeButton(currentStyle: CollectionViewStyle) {
+        var imageName: String {
             switch currentStyle {
             case .list :
-                return "아이콘"
+                return "rectangle.grid.2x2"
             case .grid :
-                return "리스트"
+                return "list.bullet"
             }
         }
         
-        let alert = UIAlertController(title: "화면모드변경", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let viewModeButton = UIBarButtonItem(image: UIImage(systemName: imageName), style: .plain, target: self, action: #selector(tappedChangeViewModeButton))
         
-        let changeAction = UIAlertAction(title: message, style: .default) { _ in
-            self.changeMode()
-        }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        
-        alert.addAction(changeAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+        navigationItem.rightBarButtonItem = viewModeButton
+    }
+    
+    @objc func tappedChangeViewModeButton() {
+        changeMode()
     }
     
     private func changeMode() {
@@ -225,6 +203,8 @@ extension BoxOfficeViewController {
         } else {
             collectionViewStyle = .list
         }
+        
+        setViewModeButton(currentStyle: collectionViewStyle)
         
         collectionView.removeFromSuperview()
 
