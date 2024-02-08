@@ -23,7 +23,12 @@ final class ImageManager {
                 guard let image = UIImage(data: data) else { return }
                 completion(.success(image))
             case .failure(let error):
-                completion(.failure(error))
+                if error == .invalidURL {
+                    let defaultImage = UIImage(named: "movie_sample_image")!
+                    completion(.success(defaultImage))
+                } else {
+                    completion(.failure(error))
+                }
             }
         }
     }
