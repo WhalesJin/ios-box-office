@@ -50,6 +50,16 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         return label
     }()
     
+    private let audienceAccumulateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .left
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 1
+        
+        return label
+    }()
+    
     private let openingDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
@@ -64,6 +74,7 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
+        stackView.spacing = 10
         
         return stackView
     }()
@@ -75,11 +86,19 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         return stackView
     }()
     
+    private let movieImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        
+        return imageView
+    }()
+    
     private var titleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 10
+        stackView.spacing = 8
         
         return stackView
     }()
@@ -98,7 +117,7 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         rankIntensityLabel.textColor = .black
     }
     
-    func updateLabel(with boxOfficeData: BoxOfficeData, _ rankIntensityText: NSMutableAttributedString) {
+    func updateLabel(with image: UIImage, _ boxOfficeData: BoxOfficeData, _ rankIntensityText: NSMutableAttributedString) {
         rankLabel.text = boxOfficeData.rank
         rankIntensityLabel.text = boxOfficeData.rankIntensity
         movieNameLabel.text = boxOfficeData.movieName
@@ -107,8 +126,10 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
         let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
         
-        audienceLabel.text = "관객수: \(audienceCount) 명 (누적 \(audienceAccumulate) 명)"
+        audienceLabel.text = "일별 관객수: \(audienceCount) 명"
+        audienceAccumulateLabel.text = "누적 관계수: \(audienceAccumulate) 명"
         rankIntensityLabel.attributedText = rankIntensityText
+        movieImageView.image = image
     }
 }
 
@@ -118,8 +139,10 @@ extension BoxOfficeListCell {
         rankStackView.addArrangedSubview(rankIntensityLabel)
         titleStackView.addArrangedSubview(movieNameLabel)
         titleStackView.addArrangedSubview(audienceLabel)
+        titleStackView.addArrangedSubview(audienceAccumulateLabel)
         titleStackView.addArrangedSubview(openingDateLabel)
         stackView.addArrangedSubview(rankStackView)
+        stackView.addArrangedSubview(movieImageView)
         stackView.addArrangedSubview(titleStackView)
         
         contentView.addSubview(stackView)
@@ -131,12 +154,9 @@ extension BoxOfficeListCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            rankStackView.widthAnchor.constraint(
-                equalTo: contentView.widthAnchor,
-                multiplier: Constraints.rankStackViewFromContentViewWidth
-            ),
             stackView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor
+                equalTo: contentView.leadingAnchor,
+                constant: 10
             ),
             stackView.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
@@ -149,6 +169,14 @@ extension BoxOfficeListCell {
             stackView.bottomAnchor.constraint(
                 equalTo: contentView.bottomAnchor,
                 constant: Constraints.stackViewFromContentViewBottom
+            ),
+            rankStackView.widthAnchor.constraint(
+                equalTo: contentView.widthAnchor,
+                multiplier: Constraints.rankStackViewFromContentViewWidth
+            ),
+            movieImageView.widthAnchor.constraint(
+                equalTo: contentView.widthAnchor,
+                multiplier: 0.23
             ),
             titleStackView.topAnchor.constraint(
                 equalTo: stackView.topAnchor,

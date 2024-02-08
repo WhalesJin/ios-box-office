@@ -25,6 +25,8 @@ final class BoxOfficeViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, BoxOfficeData>! = nil
     private let activityIndicatorView = UIActivityIndicatorView()
     private var collectionViewStyle: CollectionViewStyle = .list
+    private let boxOfficeManager = BoxOfficeManager()
+    private let imageManager = ImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +42,6 @@ final class BoxOfficeViewController: UIViewController {
     }
     
     private func loadData() {
-        let boxOfficeManager = BoxOfficeManager()
-        
         boxOfficeManager.fetchBoxOfficeData(with: yesterday) { result in
             switch result {
             case .success(let items):
@@ -115,7 +115,30 @@ extension BoxOfficeViewController {
         if style == .list {
             let cellRegistration = UICollectionView.CellRegistration<BoxOfficeListCell, BoxOfficeData> { (cell, indexPath, item) in
                 let rankIntensityText = self.configureRankIntensity(with: item)
-                cell.updateLabel(with: item, rankIntensityText)
+                
+                let movieName = item.movieName
+                
+                self.boxOfficeManager.fetchMovieImageData3(with: movieName) { result in
+                    switch result {
+                    case .success(let url):
+                        DispatchQueue.main.async {
+                            self.imageManager.fetchImage(url: url) { result in
+                                switch result {
+                                case .success(let image):
+                                    DispatchQueue.main.async {
+                                        if let image {
+                                            cell.updateLabel(with: image, item, rankIntensityText)
+                                        }
+                                    }
+                                case .failure(let error):
+                                    os_log("%{public}@", type: .default, error.localizedDescription)
+                                }
+                            }
+                        }
+                    case .failure(let error):
+                        os_log("%{public}@", type: .default, error.localizedDescription)
+                    }
+                }
             }
             
             dataSource = UICollectionViewDiffableDataSource<Section, BoxOfficeData>(collectionView: collectionView) {

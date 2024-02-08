@@ -8,10 +8,10 @@
 import Foundation
 
 enum Constraints {
-    static let rankStackViewFromContentViewWidth: CGFloat = 0.23
     static let stackViewFromContentViewTrailing: CGFloat = -10
     static let stackViewFromContentViewTop: CGFloat = 14
     static let stackViewFromContentViewBottom: CGFloat = -14
+    static let rankStackViewFromContentViewWidth: CGFloat = 0.15
     static let titleViewFromContentViewTop: CGFloat = 5
     static let titleViewFromContentViewBottom: CGFloat = -5
     static let itemTitleLabelFromMovieDetailStackViewWidth: CGFloat = 0.2
