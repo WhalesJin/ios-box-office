@@ -24,7 +24,7 @@ final class ImageManager {
                 completion(.success(image))
             case .failure(let error):
                 if error == .invalidURL {
-                    let defaultImage = UIImage(named: "movie_sample_image")!
+                    let defaultImage = UIImage(named: "default_image")!
                     completion(.success(defaultImage))
                 } else {
                     completion(.failure(error))
