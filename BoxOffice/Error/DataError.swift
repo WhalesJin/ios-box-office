@@ -10,6 +10,7 @@ import Foundation
 enum DataError: LocalizedError {
     case notFoundAsset
     case failedDecoding
+    case noData
     
     var errorDescription: String? {
         switch self {
@@ -17,6 +18,8 @@ enum DataError: LocalizedError {
             return "해당 DataAsset을 찾을 수 없습니다."
         case .failedDecoding:
             return "디코딩에 실패하였습니다."
+        case .noData:
+            return "데이터가 없습니다."
         }
     }
 }
