@@ -74,7 +74,7 @@ final class BoxOfficeListCell: UICollectionViewListCell {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.spacing = 10
+        stackView.spacing = 8
         
         return stackView
     }()

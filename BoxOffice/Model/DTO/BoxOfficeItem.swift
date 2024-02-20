@@ -5,7 +5,7 @@
 //  Created by Dasan on 2024/02/20.
 //
 
-import UIKit
+import UIKit.UIImage
 
 struct BoxOfficeItem: Hashable {
     let movieCode: String

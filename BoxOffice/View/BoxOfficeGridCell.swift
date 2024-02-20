@@ -10,6 +10,14 @@ import UIKit
 final class BoxOfficeGridCell: UICollectionViewCell {
     static let identifier = "boxOfficeGridCell"
     
+    private let movieImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        
+        return imageView
+    }()
+    
     private let rankLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
@@ -35,7 +43,7 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         
         return label
     }()
@@ -46,7 +54,17 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
         label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 2
+        label.numberOfLines = 1
+        
+        return label
+    }()
+    
+    private let audienceAccumulateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textAlignment = .left
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 1
         
         return label
     }()
@@ -65,7 +83,8 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalCentering
+        stackView.spacing = 6
         
         return stackView
     }()
@@ -93,8 +112,10 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeItem.boxOfficeData.audienceCount)) ?? "-"
         let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeItem.boxOfficeData.audienceAccumulate)) ?? "-"
         
-        audienceLabel.text = "관객수: \(audienceCount) 명 \n(누적 \(audienceAccumulate) 명)"
+        audienceLabel.text = "일별 관객수: \(audienceCount) 명"
+        audienceAccumulateLabel.text = "누적 관계수: \(audienceAccumulate) 명"
         rankIntensityLabel.attributedText = rankIntensityText
+        movieImageView.image = boxOfficeItem.posterImage
     }
 }
 
@@ -104,10 +125,12 @@ extension BoxOfficeGridCell {
         self.layer.cornerRadius = 5
         self.layer.borderColor = UIColor.systemGray4.cgColor
         
+        stackView.addArrangedSubview(movieImageView)
         stackView.addArrangedSubview(rankLabel)
         stackView.addArrangedSubview(movieNameLabel)
         stackView.addArrangedSubview(rankIntensityLabel)
         stackView.addArrangedSubview(audienceLabel)
+        stackView.addArrangedSubview(audienceAccumulateLabel)
         stackView.addArrangedSubview(openingDateLabel)
         
         contentView.addSubview(stackView)

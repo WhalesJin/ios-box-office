@@ -99,7 +99,7 @@ extension BoxOfficeViewController {
             item.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
             
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .fractionalWidth(fractionWidth))
+                                                   heightDimension: .fractionalWidth(fractionWidth*2.2))
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitem: item,
