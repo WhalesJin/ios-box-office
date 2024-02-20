@@ -11,6 +11,21 @@ import XCTest
 final class BoxOfficeManagerTests: XCTestCase {
     private var boxOfficeManager: BoxOfficeManager!
     
+//    func test() {
+//        let expectation = XCTestExpectation(description: "test")
+//        boxOfficeManager = BoxOfficeManager(networkManager: NetworkManager())
+//        boxOfficeManager.fetchBoxOfficeItems(targetDate: .init(dayFromNow: -1)) { result in
+//            switch result {
+//            case .success(let arr):
+//                XCTAssertNotNil(arr)
+//                expectation.fulfill()
+//            case .failure(_):
+//                XCTFail()
+//            }
+//        }
+//        wait(for: [expectation])
+//    }
+    
     func testFetchBoxOfficeData() {
         let expectation = XCTestExpectation(description: "fetchBoxOffice")
         let dataAsset: NSDataAsset = NSDataAsset(name: "box_office_sample")!
@@ -21,10 +36,10 @@ final class BoxOfficeManagerTests: XCTestCase {
 
         let expectationMovieName = "경관의 피"
         
-        boxOfficeManager.fetchBoxOfficeData(with: TargetDate(dayFromNow: 0)) { result in
+        boxOfficeManager.fetchDailyBoxOfficeList(with: TargetDate(dayFromNow: 0)) { result in
             switch result {
             case .success(let data):
-                XCTAssertEqual(data!.first?.movieName, expectationMovieName)
+                XCTAssertEqual(data.first?.movieName, expectationMovieName)
                 expectation.fulfill()
             case .failure:
                 XCTFail()
@@ -40,7 +55,7 @@ final class BoxOfficeManagerTests: XCTestCase {
         //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
 
-        boxOfficeManager.fetchBoxOfficeData(with: TargetDate(dayFromNow: 0)) { result in
+        boxOfficeManager.fetchDailyBoxOfficeList(with: TargetDate(dayFromNow: 0)) { result in
             switch result {
             case .success:
                 XCTFail()
@@ -64,7 +79,7 @@ final class BoxOfficeManagerTests: XCTestCase {
         boxOfficeManager.fetchMovieData(with: "123456"){ result in
             switch result {
             case .success(let data):
-                XCTAssertEqual(data!.actors.first?.personName, expectationPersonName)
+                XCTAssertEqual(data.actors.first?.personName, expectationPersonName)
                 expectation.fulfill()
             case .failure:
                 XCTFail()
@@ -101,7 +116,7 @@ final class BoxOfficeManagerTests: XCTestCase {
 
         let expectationImageURL = URL(string: "https://www.imageUrl.com")
 
-        boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
+        boxOfficeManager.fetchMovieImageUrl(with: "keyword") { result in
             switch result {
             case .success(let data):
                 XCTAssertEqual(data!, expectationImageURL)
@@ -120,7 +135,7 @@ final class BoxOfficeManagerTests: XCTestCase {
         //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
         
-        boxOfficeManager.fetchMovieImageData(with: "keyword") { result in
+        boxOfficeManager.fetchMovieImageUrl(with: "keyword") { result in
             switch result {
             case .success:
                 XCTFail()
@@ -133,7 +148,7 @@ final class BoxOfficeManagerTests: XCTestCase {
     }
     
     func testFetchMovieImageData2() {
-        let expectation = XCTestExpectation(description: "fetchMovieImageData2")
+        let expectation = XCTestExpectation(description: "fetchMovieImageUrl")
         let dataAsset: NSDataAsset = NSDataAsset(name: "movie_image_sample2")!
         let networkManager = NetworkManager(requester: SuccessRequester(data: dataAsset.data))
         //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
@@ -141,10 +156,10 @@ final class BoxOfficeManagerTests: XCTestCase {
 
         let expectationImageURL = URL(string: "http://file.koreafilm.or.kr/thm/02/00/03/19/tn_DPF010393.JPG")
 
-        boxOfficeManager.fetchMovieImageData2(with: ("title", "englishTitle")) { result in
+        boxOfficeManager.fetchMovieImageUrl(with: ("title", "englishTitle")) { result in
             switch result {
             case .success(let data):
-                XCTAssertEqual(data!, expectationImageURL)
+                XCTAssertEqual(data, expectationImageURL)
                 expectation.fulfill()
             case .failure:
                 XCTFail()
@@ -160,7 +175,7 @@ final class BoxOfficeManagerTests: XCTestCase {
         //let networkManager = MockSuccessNetworkManager(data: dataAsset.data)
         boxOfficeManager = BoxOfficeManager(networkManager: networkManager)
         
-        boxOfficeManager.fetchMovieImageData2(with: ("title", "englishTitle")) { result in
+        boxOfficeManager.fetchMovieImageUrl(with: ("title", "englishTitle")) { result in
             switch result {
             case .success:
                 XCTFail()

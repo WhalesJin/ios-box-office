@@ -9,27 +9,76 @@ import UIKit
 
 final class BoxOfficeManager {
     private let networkManager: NetworkManageable
+    private let imageManager: ImageManager
     
     init(networkManager: NetworkManageable = NetworkManager(requester: DefaultRequester())) {
         self.networkManager = networkManager
+        self.imageManager = ImageManager(networkManager: networkManager)
     }
     
-    func fetchBoxOfficeData(with targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeData]?, Error>) -> Void) {
+    func fetchBoxOfficeItems(targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeItem], Error>) -> Void) {
+        var boxOfficeItems: [BoxOfficeItem] = []
+        
+        fetchDailyBoxOfficeList(with: targetDate) { [self] dailyBoxOfficeListResult in
+            switch dailyBoxOfficeListResult {
+            case .success(let dailyBoxOfficeList):
+                for movie in dailyBoxOfficeList {
+                    fetchMovieData(with: movie.movieCode) { [self] movieResult in
+                        switch movieResult {
+                        case .success(let movieInformation):
+                            fetchMovieImageUrl(with: (movieInformation.movieName, movieInformation.movieEnglishName)) { [self] imageDataResult in
+                                switch imageDataResult {
+                                case .success(let imageUrl):
+                                    if let imageUrl {
+                                        imageManager.fetchImage(url: imageUrl) { imageResult in
+                                            switch imageResult {
+                                            case .success(let posterImage):
+                                                boxOfficeItems.append(BoxOfficeItem(movieCode: movieInformation.movieCode,
+                                                                                    boxOfficeData: movie,
+                                                                                    movieInformation: movieInformation,
+                                                                                    imageUrl: imageUrl,
+                                                                                    posterImage: posterImage ?? UIImage(named: "default_image")!))
+                                                boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
+                                                completion(.success(boxOfficeItems))
+                                            case .failure(let error):
+                                                completion(.failure(error))
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        completion(.failure(DataError.noData))
+                                    }
+                                case .failure(let error):
+                                    completion(.failure(error))
+                                }
+                            }
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchDailyBoxOfficeList(with targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeData], Error>) -> Void) {
         let _ = networkManager.fetchData(from: KobisAPI.boxOffice(targetDate: targetDate.formattedWithoutSeparator()).url,
                                  method: .get,
                                  header: nil) { result in
             do {
                 let decodedData = try DecodingManager.decodeJSON(type: BoxOffice.self, data: result.get())
-                let boxOfficeItems = decodedData.boxOfficeResult.dailyBoxOfficeList
+                let dailyBoxOfficeList = decodedData.boxOfficeResult.dailyBoxOfficeList
                 
-                completion(.success(boxOfficeItems))
+                completion(.success(dailyBoxOfficeList))
             } catch {
                 completion(.failure(error))
             }
         }
     }
     
-    func fetchMovieData(with movieCode: String, completion: @escaping (Result<MovieInformation?, Error>) -> Void) {
+    func fetchMovieData(with movieCode: String, completion: @escaping (Result<MovieInformation, Error>) -> Void) {
         let _ = networkManager.fetchData(from: KobisAPI.movie(movieCode: movieCode).url,
                                  method: .get,
                                  header: nil) { result in
@@ -44,7 +93,8 @@ final class BoxOfficeManager {
         }
     }
     
-    func fetchMovieImageData(with keyword: String, completion: @escaping (Result<URL?, Error>) -> Void) {
+    // MARK: 영화포스터 이미지 가져오기 - Kakao 검색 API 사용
+    func fetchMovieImageUrl(with keyword: String, completion: @escaping (Result<URL?, Error>) -> Void) {
         var movieImageURLString: String?
 
         let kakaoAPI = KakaoAPI.image(keyword: keyword)
@@ -67,7 +117,8 @@ final class BoxOfficeManager {
         }
     }
     
-    func fetchMovieImageData2(with keyword: (String, String), completion: @escaping (Result<URL?, Error>) -> Void) {
+    // MARK: 영화포스터 이미지 가져오기 - Koreafilm API 사용
+    func fetchMovieImageUrl(with keyword: (String, String), completion: @escaping (Result<URL?, Error>) -> Void) {
         let koreafilmAPI = KoreafilmAPI.movie(title: keyword.0, englishTitle: keyword.1)
         let _ = networkManager.fetchData(from: koreafilmAPI.url,
                                  method: .get,
@@ -85,34 +136,9 @@ final class BoxOfficeManager {
                    let movieImageURLString = moviePosterURLs.split(separator: "|").first,
                    let movieImageURL = URL(string: String(movieImageURLString)) {
                     completion(.success(movieImageURL))
+                } else {
+                    completion(.failure(DataError.noData))
                 }
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func fetchMovieImageData3(with keyword: String, completion: @escaping (Result<URL?, Error>) -> Void) {
-        let koreafilmAPI = KoreafilmAPI.movie(title: keyword, englishTitle: nil)
-        let _ = networkManager.fetchData(from: koreafilmAPI.url,
-                                 method: .get,
-                                 header: nil) { result in
-            do {
-                let decodedData = try DecodingManager.decodeJSON(type: KMDbMovieImage.self, data: result.get())
-                var movieData = decodedData.data.first
-                
-                movieData?.result.sort(by: { a, b in
-                    a.productionYear > b.productionYear
-                })
-                
-                var movieImageURL: URL? = nil
-                if let movieResult = movieData?.result,
-                   let moviePosterURLs = movieResult.first?.posters,
-                   let movieImageURLString = moviePosterURLs.split(separator: "|").first,
-                   let validURL = URL(string: String(movieImageURLString)) {
-                    movieImageURL = validURL
-                }
-                completion(.success(movieImageURL))
             } catch {
                 completion(.failure(error))
             }

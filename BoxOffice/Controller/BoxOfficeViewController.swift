@@ -18,15 +18,14 @@ private enum CollectionViewStyle {
 }
 
 final class BoxOfficeViewController: UIViewController {
+    private let boxOfficeManager = BoxOfficeManager()
     private let yesterday = TargetDate(dayFromNow: -1)
-    private var items = [BoxOfficeData]()
+    private var items = [BoxOfficeItem]()
     
     private var collectionView: UICollectionView! = nil
-    private var dataSource: UICollectionViewDiffableDataSource<Section, BoxOfficeData>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Section, BoxOfficeItem>! = nil
     private let activityIndicatorView = UIActivityIndicatorView()
     private var collectionViewStyle: CollectionViewStyle = .list
-    private let boxOfficeManager = BoxOfficeManager()
-    private let imageManager = ImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +41,10 @@ final class BoxOfficeViewController: UIViewController {
     }
     
     private func loadData() {
-        boxOfficeManager.fetchBoxOfficeData(with: yesterday) { result in
+        boxOfficeManager.fetchBoxOfficeItems(targetDate: yesterday) { result in
             switch result {
             case .success(let items):
                 DispatchQueue.main.async {
-                    guard let items = items else { return }
                     self.items = items
                     self.applySnapshot()
                     self.stopActivityIndicator()
@@ -60,7 +58,7 @@ final class BoxOfficeViewController: UIViewController {
 
 extension BoxOfficeViewController {
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, BoxOfficeData>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, BoxOfficeItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
         
@@ -113,47 +111,23 @@ extension BoxOfficeViewController {
     
     private func configureDataSource(style: CollectionViewStyle) {
         if style == .list {
-            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeListCell, BoxOfficeData> { (cell, indexPath, item) in
-                let rankIntensityText = self.configureRankIntensity(with: item)
-                
-                let movieName = item.movieName
-                
-                self.boxOfficeManager.fetchMovieImageData3(with: movieName) { result in
-                    switch result {
-                    case .success(let url):
-                        DispatchQueue.main.async {
-                            self.imageManager.fetchImage(url: url) { result in
-                                switch result {
-                                case .success(let image):
-                                    DispatchQueue.main.async {
-                                        if let image {
-                                            cell.updateLabel(with: image, item, rankIntensityText)
-                                        }
-                                    }
-                                case .failure(let error):
-                                    os_log("%{public}@", type: .default, error.localizedDescription)
-                                }
-                            }
-                        }
-                    case .failure(let error):
-                        os_log("%{public}@", type: .default, error.localizedDescription)
-                    }
-                }
-            }
-            
-            dataSource = UICollectionViewDiffableDataSource<Section, BoxOfficeData>(collectionView: collectionView) {
-                (collectionView: UICollectionView, indexPath: IndexPath, identifier: BoxOfficeData) -> UICollectionViewListCell? in
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
-            }
-            
-        } else {
-            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeGridCell, BoxOfficeData> { (cell, indexPath, item) in
-                let rankIntensityText = self.configureRankIntensity(with: item)
+            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeListCell, BoxOfficeItem> { (cell, indexPath, item) in
+                let rankIntensityText = self.configureRankIntensity(with: item.boxOfficeData)
                 cell.updateLabel(with: item, rankIntensityText)
             }
             
-            dataSource = UICollectionViewDiffableDataSource<Section, BoxOfficeData>(collectionView: collectionView) {
-                (collectionView: UICollectionView, indexPath: IndexPath, identifier: BoxOfficeData) -> UICollectionViewCell? in
+            dataSource = UICollectionViewDiffableDataSource<Section, BoxOfficeItem>(collectionView: collectionView) {
+                (collectionView: UICollectionView, indexPath: IndexPath, identifier: BoxOfficeItem) -> UICollectionViewListCell? in
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
+            }
+        } else {
+            let cellRegistration = UICollectionView.CellRegistration<BoxOfficeGridCell, BoxOfficeItem> { (cell, indexPath, item) in
+                let rankIntensityText = self.configureRankIntensity(with: item.boxOfficeData)
+                cell.updateLabel(with: item, rankIntensityText)
+            }
+            
+            dataSource = UICollectionViewDiffableDataSource<Section, BoxOfficeItem>(collectionView: collectionView) {
+                (collectionView: UICollectionView, indexPath: IndexPath, identifier: BoxOfficeItem) -> UICollectionViewCell? in
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
             }
         }
@@ -276,8 +250,9 @@ extension BoxOfficeViewController {
 
 extension BoxOfficeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieCode: String = items[indexPath.item].movieCode
-        let movieInformationViewController = MovieInformationViewController(movieCode: movieCode)
+        let movieInformation: MovieInformation = items[indexPath.item].movieInformation
+        let posterImager: UIImage = items[indexPath.item].posterImage
+        let movieInformationViewController = MovieInformationViewController(movieInformation: movieInformation, posterImage: posterImager)
         
         show(movieInformationViewController, sender: self)
     }

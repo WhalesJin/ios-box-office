@@ -12,13 +12,14 @@ final class MovieInformationViewController: UIViewController {
     private let boxOfficeManager = BoxOfficeManager()
     private let imageManager = ImageManager()
     private var movieInformation: MovieInformation?
-    private var movieCode: String?
+    private var posterImage: UIImage?
     
     private let activityIndicatorView = UIActivityIndicatorView()
     
-    init(movieCode: String) {
+    init(movieInformation: MovieInformation, posterImage: UIImage) {
         super.init(nibName: nil, bundle: nil)
-        self.movieCode = movieCode
+        self.movieInformation = movieInformation
+        self.posterImage = posterImage
     }
     
     required init?(coder: NSCoder) {
@@ -31,61 +32,18 @@ final class MovieInformationViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         configureActivityIndicatorView()
-        startActivityIndicator()
-        loadData()
-    }
-    
-    private func loadData() {
-        guard let movieCode = movieCode else { return }
-        
-        boxOfficeManager.fetchMovieData(with: movieCode) { result in
-            switch result {
-            case .success(let movieInformation):
-                DispatchQueue.main.async {
-                    self.movieInformation = movieInformation
-                    self.configureNavigationItem(title: movieInformation?.movieName)
-                    self.loadPosterImage()
-                }
-            case .failure(let error):
-                os_log("%{public}@", type: .default, error.localizedDescription)
-            }
-        }
-    }
-    
-    private func loadPosterImage() {
-        let movieName = movieInformation?.movieName ?? ""
-        let movieEnglishName = movieInformation?.movieEnglishName ?? ""
-        
-        boxOfficeManager.fetchMovieImageData2(with: (movieName, movieEnglishName)) { result in
-            switch result {
-            case .success(let url):
-                DispatchQueue.main.async {
-                    self.imageManager.fetchImage(url: url) { result in
-                        switch result {
-                        case .success(let image):
-                            DispatchQueue.main.async {
-                                self.stopActivityIndicator()
-                                self.configureUI(with: image)
-                            }
-                        case .failure(let error):
-                            os_log("%{public}@", type: .default, error.localizedDescription)
-                        }
-                    }
-                }
-            case .failure(let error):
-                os_log("%{public}@", type: .default, error.localizedDescription)
-            }
-        }
+        configureNavigationItem()
+        configureUI()
     }
 }
 
 extension MovieInformationViewController {
-    private func configureNavigationItem(title: String?) {
-        navigationItem.title = title
+    private func configureNavigationItem() {
+        navigationItem.title = movieInformation?.movieName
     }
     
-    private func configureUI(with image: UIImage?) {
-        guard let posterImage = image,
+    private func configureUI() {
+        guard let posterImage = posterImage,
               let movieInformation = movieInformation else { return }
         
         let movieScrollView = MovieScrollView(frame: .zero, image: posterImage, movieInformation: movieInformation)

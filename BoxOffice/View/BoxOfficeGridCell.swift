@@ -84,14 +84,14 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         rankIntensityLabel.textColor = .black
     }
     
-    func updateLabel(with boxOfficeData: BoxOfficeData, _ rankIntensityText: NSMutableAttributedString) {
-        rankLabel.text = boxOfficeData.rank
-        rankIntensityLabel.text = boxOfficeData.rankIntensity
-        movieNameLabel.text = boxOfficeData.movieName
-        openingDateLabel.text = "개봉일: \(boxOfficeData.openingDate)"
+    func updateLabel(with boxOfficeItem: BoxOfficeItem, _ rankIntensityText: NSMutableAttributedString) {
+        rankLabel.text = boxOfficeItem.boxOfficeData.rank
+        rankIntensityLabel.text = boxOfficeItem.boxOfficeData.rankIntensity
+        movieNameLabel.text = boxOfficeItem.boxOfficeData.movieName
+        openingDateLabel.text = "개봉일: \(boxOfficeItem.boxOfficeData.openingDate)"
         
-        let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceCount)) ?? "-"
-        let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeData.audienceAccumulate)) ?? "-"
+        let audienceCount = CountFormatter.decimal.string(for: Int(boxOfficeItem.boxOfficeData.audienceCount)) ?? "-"
+        let audienceAccumulate = CountFormatter.decimal.string(for: Int(boxOfficeItem.boxOfficeData.audienceAccumulate)) ?? "-"
         
         audienceLabel.text = "관객수: \(audienceCount) 명 \n(누적 \(audienceAccumulate) 명)"
         rankIntensityLabel.attributedText = rankIntensityText
