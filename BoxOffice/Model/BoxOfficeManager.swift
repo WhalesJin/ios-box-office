@@ -38,8 +38,10 @@ final class BoxOfficeManager {
                                                                                     movieInformation: movieInformation,
                                                                                     imageUrl: imageUrl,
                                                                                     posterImage: posterImage ?? UIImage(named: "default_image")!))
-                                                boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
-                                                completion(.success(boxOfficeItems))
+                                                if boxOfficeItems.count == 10 { // 10개 채워졌을 때만 넘겨주기
+                                                    boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
+                                                    completion(.success(boxOfficeItems))
+                                                }
                                             case .failure(let error):
                                                 completion(.failure(error))
                                             }
