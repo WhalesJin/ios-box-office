@@ -9,7 +9,7 @@ import XCTest
 @testable import BoxOffice
 
 final class ImageManagerTests: XCTestCase {
-    private let image = UIImage(named: "movie_sample_image")
+    private let image = UIImage(named: "default_image")
     private var imageManager: ImageManager!
     
     func testFetchImage() {

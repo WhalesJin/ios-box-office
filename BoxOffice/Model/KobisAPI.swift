@@ -13,7 +13,7 @@ enum KobisAPI {
 }
 
 extension KobisAPI: URLConfigurable {
-    var baseURL: String {
+    var baseUrl: String {
         return "http://www.kobis.or.kr"
     }
     
@@ -42,6 +42,6 @@ extension KobisAPI: URLConfigurable {
     }
     
     var url: URL? {
-        return URL(baseURL, path, queries)
+        return URL(baseUrl, path, queries)
     }
 }

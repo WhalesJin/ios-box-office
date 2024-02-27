@@ -8,6 +8,14 @@
 import XCTest
 @testable import BoxOffice
 
+final class AnyType {
+    let value: Int
+    
+    init(value: Int) {
+        self.value = value
+    }
+}
+
 final class CacheManagerTests: XCTestCase {
     let cacheManager = CacheManager<AnyType>()
 
@@ -50,18 +58,10 @@ final class CacheManagerTests: XCTestCase {
     func testIsNotCached() {
         cacheManager.insert("1", AnyType(value: 1))
         
-        if let object = cacheManager.read(key: "2") {
+        if let _ = cacheManager.read(key: "2") {
             XCTFail()
         } else {
             XCTAssertNil(cacheManager.read(key: "2")?.value)
         }
-    }
-}
-
-final class AnyType {
-    let value: Int
-    
-    init(value: Int) {
-        self.value = value
     }
 }

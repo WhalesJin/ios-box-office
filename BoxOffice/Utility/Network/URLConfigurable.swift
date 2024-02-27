@@ -8,7 +8,7 @@
 import Foundation
 
 protocol URLConfigurable {
-    var baseURL: String { get }
+    var baseUrl: String { get }
     var path: String { get }
     var queries: [URLQueryItem] { get }
 }

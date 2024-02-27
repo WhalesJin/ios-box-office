@@ -18,7 +18,6 @@ final class CacheManager<T: AnyObject> {
         return cache.object(forKey: key as NSString) as? T
     }
     
-    
     func remove(key: String) {
         cache.removeObject(forKey: key as NSString)
     }

@@ -1,5 +1,5 @@
 //
-//  KoreafilmAPI.swift
+//  KoreaFilmAPI.swift
 //  BoxOffice
 //
 //  Created by Dasan on 2024/01/31.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum KoreafilmAPI {
+enum KoreaFilmAPI {
     case movie(title: String, englishTitle: String?)
 }
 
-extension KoreafilmAPI: URLConfigurable {
-    var baseURL: String {
+extension KoreaFilmAPI: URLConfigurable {
+    var baseUrl: String {
         return "http://api.koreafilm.or.kr"
     }
     
@@ -31,6 +31,6 @@ extension KoreafilmAPI: URLConfigurable {
     }
     
     var url: URL? {
-        return URL(baseURL, path, queries)
+        return URL(baseUrl, path, queries)
     }
 }

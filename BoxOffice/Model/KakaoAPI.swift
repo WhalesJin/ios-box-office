@@ -12,7 +12,7 @@ enum KakaoAPI {
 }
 
 extension KakaoAPI: URLConfigurable {
-    var baseURL: String {
+    var baseUrl: String {
         return "https://dapi.kakao.com"
     }
     
@@ -35,7 +35,7 @@ extension KakaoAPI: URLConfigurable {
     }
     
     var url: URL? {
-        return URL(baseURL, path, queries)
+        return URL(baseUrl, path, queries)
     }
     
     var header: [HTTPHeader]? {
@@ -43,7 +43,7 @@ extension KakaoAPI: URLConfigurable {
     }
     
     var urlRequest: URLRequest? {
-        guard let url = URL(baseURL, path, queries) else { return nil }
+        guard let url = URL(baseUrl, path, queries) else { return nil }
 
         var urlRequest = URLRequest(url: url)
 

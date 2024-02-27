@@ -31,7 +31,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_일치하는_dataAsset가있을때_notFoundAsset에러를_던지지않는다() {
         //given
-        let fileName = "box_office_sample"
+        let fileName = "BoxOffice_JSON_sample"
         
         //when, then
         XCTAssertNoThrow(try sut.decodeJSON(fileName: fileName) as BoxOffice)
@@ -39,7 +39,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_Model타입과_JSON데이터의_key가달라_decoding이_실패했을때_failedDecoding에러를_던진다() {
         //given
-        let fileName = "box_office_sample_test"
+        let fileName = "BoxOffice_JSON_wrong_sample"
         
         //when, then
         XCTAssertThrowsError(try sut.decodeJSON(fileName: fileName) as BoxOffice) { error in
@@ -49,7 +49,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_Model타입과_JSON데이터의_key가같아_decoding이_성공했을때_failedDecoding에러를_던지지않는다() {
         //given
-        let fileName = "box_office_sample"
+        let fileName = "BoxOffice_JSON_sample"
         
         //when, then
         XCTAssertNoThrow(try sut.decodeJSON(fileName: fileName) as BoxOffice)
@@ -57,7 +57,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_decoding에_성공한_boxOffice의_boxofficeType은_일별박스오피스이다() {
         //given
-        let data: BoxOffice = try! sut.decodeJSON(fileName: "box_office_sample")
+        let data: BoxOffice = try! sut.decodeJSON(fileName: "BoxOffice_JSON_sample")
         let expectation = "일별 박스오피스"
         
         //when
@@ -69,7 +69,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_decoding에_성공한_boxOffice의_dailyBoxOfficeList의_count는_10이다() {
         //given
-        let data: BoxOffice = try! sut.decodeJSON(fileName: "box_office_sample")
+        let data: BoxOffice = try! sut.decodeJSON(fileName: "BoxOffice_JSON_sample")
         let expectation = 10
         
         //when
@@ -81,7 +81,7 @@ final class DecodingManagerTests: XCTestCase {
     
     func test_decoding에_성공한_boxOffice의_dailyBoxOfficeList의_첫번째영화는_경관의피이고_마지막영화는_엔칸토마법의세계이다() {
         //given
-        let data: BoxOffice = try! sut.decodeJSON(fileName: "box_office_sample")
+        let data: BoxOffice = try! sut.decodeJSON(fileName: "BoxOffice_JSON_sample")
         let firstExpectation = "경관의 피"
         let lastExpectation = "엔칸토: 마법의 세계"
         

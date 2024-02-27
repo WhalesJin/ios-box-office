@@ -10,6 +10,7 @@ import UIKit
 final class BoxOfficeManager {
     private let networkManager: NetworkManageable
     private let imageManager: ImageManager
+    private let cacheManager = CacheManager<AnyObject>()
     var boxOfficeItems: [BoxOfficeItem] = []
     
     init(networkManager: NetworkManageable = NetworkManager(requester: DefaultRequester())) {
@@ -17,62 +18,56 @@ final class BoxOfficeManager {
         self.imageManager = ImageManager(networkManager: networkManager)
     }
     
-    private func appendAndCheckSize(movieCode: String, boxOfficeData: BoxOfficeData, movieInformation: MovieInformation, imageUrl: URL?, posterImage: UIImage) -> Bool {
-        boxOfficeItems.append(BoxOfficeItem(movieCode: movieCode,
-                                            boxOfficeData: boxOfficeData,
-                                            movieInformation: movieInformation,
-                                            imageUrl: imageUrl,
-                                            posterImage: posterImage))
-        if boxOfficeItems.count == 10 { // 10개 채워졌을 때만 넘겨주기
-            boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
-            return true
-        }
-        return false
-    }
-    
     func fetchBoxOfficeItems(targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeItem], Error>) -> Void) {
         fetchDailyBoxOfficeList(with: targetDate) { [self] dailyBoxOfficeListResult in
             switch dailyBoxOfficeListResult {
             case .success(let dailyBoxOfficeList):
                 for movie in dailyBoxOfficeList {
-                    fetchMovieData(with: movie.movieCode) { [self] movieResult in
-                        switch movieResult {
-                        case .success(let movieInformation):
-                            fetchMovieImageUrl(with: (movieInformation.movieName, movieInformation.movieEnglishName)) { [self] imageDataResult in
-                                switch imageDataResult {
-                                case .success(let imageUrl):
-                                    if let imageUrl {
-                                        imageManager.fetchImage(url: imageUrl) { [self] imageResult in
-                                            switch imageResult {
-                                            case .success(let posterImage):
-                                                if let posterImage,
-                                                   appendAndCheckSize(movieCode: movie.movieCode,
-                                                                      boxOfficeData: movie,
-                                                                      movieInformation: movieInformation,
-                                                                      imageUrl: imageUrl,
-                                                                      posterImage: posterImage) {
-                                                    completion(.success(boxOfficeItems))
+                    if let cachedMovie = cacheManager.read(key: movie.movieCode) as? BoxOfficeItem {
+                        print("\(cachedMovie.movieInformation.movieName) 캐시에 존재함")
+                        continue
+                    } else {
+                        fetchMovieData(with: movie.movieCode) { [self] movieResult in
+                            switch movieResult {
+                            case .success(let movieInformation):
+                                fetchKoreaFilmMovieData(with: (movieInformation.movieName, movieInformation.movieEnglishName)) { [self] imageDataResult in
+                                    switch imageDataResult {
+                                    case .success(let (imageUrl, plot)):
+                                        if let imageUrl { // Url이 nil이 아닐 때
+                                            imageManager.fetchImage(url: imageUrl) { [self] imageResult in
+                                                switch imageResult {
+                                                case .success(let posterImage):
+                                                    if appendAndCheckSize(movieCode: movie.movieCode,
+                                                                          boxOfficeData: movie,
+                                                                          movieInformation: movieInformation,
+                                                                          plot: plot,
+                                                                          imageUrl: imageUrl,
+                                                                          posterImage: posterImage ?? UIImage(named: "default_image")!
+                                                    ) {
+                                                        completion(.success(boxOfficeItems))
+                                                    }
+                                                case .failure(let error):
+                                                    completion(.failure(error))
                                                 }
-                                            case .failure(let error):
-                                                completion(.failure(error))
+                                            }
+                                        } else { // Url이 nil일 때
+                                            if appendAndCheckSize(movieCode: movie.movieCode,
+                                                                  boxOfficeData: movie,
+                                                                  movieInformation: movieInformation,
+                                                                  plot: plot,
+                                                                  imageUrl: URL(string: ""),
+                                                                  posterImage: UIImage(named: "default_image")!
+                                            ) {
+                                                completion(.success(boxOfficeItems))
                                             }
                                         }
-                                    }
-                                    else {
-                                        completion(.failure(DataError.noData))
-                                    }
-                                case .failure(_):
-                                    if appendAndCheckSize(movieCode: movie.movieCode,
-                                                          boxOfficeData: movie,
-                                                          movieInformation: movieInformation,
-                                                          imageUrl: URL(string: ""),
-                                                          posterImage: UIImage(named: "default_image")!) {
-                                        completion(.success(boxOfficeItems))
+                                    case .failure(let error):
+                                        completion(.failure(error))
                                     }
                                 }
+                            case .failure(let error):
+                                completion(.failure(error))
                             }
-                        case .failure(let error):
-                            completion(.failure(error))
                         }
                     }
                 }
@@ -112,6 +107,36 @@ final class BoxOfficeManager {
         }
     }
     
+    // MARK: Koreafilm에서 필요한 영화 정보 가져오기(줄거리, 영화포스터 URL)
+    func fetchKoreaFilmMovieData(with keyword: (String, String), completion: @escaping (Result<(url: URL?, plot: String?), Error>) -> Void) {
+        let koreaFilmAPI = KoreaFilmAPI.movie(title: keyword.0, englishTitle: keyword.0.count < 15 ? keyword.1 : "")
+        
+        let _ = networkManager.fetchData(from: koreaFilmAPI.url,
+                                 method: .get,
+                                 header: nil) { result in
+            do {
+                let decodedData = try DecodingManager.decodeJSON(type: KMDbMovieData.self, data: result.get())
+                var movieData = decodedData.data.first
+                
+                movieData?.result.sort(by: { a, b in
+                    a.productionYear > b.productionYear
+                })
+                
+                if let movieResult = movieData?.result.first {
+                    let movieImageUrlString = movieResult.posterUrls.split(separator: "|").first
+                    let movieImageUrl = URL(string: String(movieImageUrlString ?? ""))
+                    let moviePlotText = movieResult.plots.plot.first?.plotText
+                    
+                    completion(.success((movieImageUrl, moviePlotText)))
+                } else {
+                    completion(.failure(DataError.noData))
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     // MARK: 영화포스터 이미지 가져오기 - Kakao 검색 API 사용
     func fetchMovieImageUrl(with keyword: String, completion: @escaping (Result<URL?, Error>) -> Void) {
         var movieImageURLString: String?
@@ -136,31 +161,21 @@ final class BoxOfficeManager {
         }
     }
     
-    // MARK: 영화포스터 이미지 가져오기 - Koreafilm API 사용
-    func fetchMovieImageUrl(with keyword: (String, String), completion: @escaping (Result<URL?, Error>) -> Void) {
-        let koreafilmAPI = KoreafilmAPI.movie(title: keyword.0, englishTitle: keyword.0.count < 15 ? keyword.1 : "")
-        let _ = networkManager.fetchData(from: koreafilmAPI.url,
-                                 method: .get,
-                                 header: nil) { result in
-            do {
-                let decodedData = try DecodingManager.decodeJSON(type: KMDbMovieImage.self, data: result.get())
-                var movieData = decodedData.data.first
-                
-                movieData?.result.sort(by: { a, b in
-                    a.productionYear > b.productionYear
-                })
-                
-                if let movieResult = movieData?.result,
-                   let moviePosterURLs = movieResult.first?.posters,
-                   let movieImageURLString = moviePosterURLs.split(separator: "|").first,
-                   let movieImageURL = URL(string: String(movieImageURLString)) {
-                    completion(.success(movieImageURL))
-                } else {
-                    completion(.failure(DataError.noData))
-                }
-            } catch {
-                completion(.failure(error))
-            }
+    private func appendAndCheckSize(movieCode: String, boxOfficeData: BoxOfficeData, movieInformation: MovieInformation, plot: String?, imageUrl: URL?, posterImage: UIImage) -> Bool {
+        let boxOfficeItem = BoxOfficeItem(movieCode: movieCode,
+                                          boxOfficeData: boxOfficeData,
+                                          movieInformation: movieInformation,
+                                          plot: plot ?? "-",
+                                          imageUrl: imageUrl,
+                                          posterImage: posterImage)
+        
+        cacheManager.insert(movieCode, boxOfficeItem)
+        boxOfficeItems.append(boxOfficeItem)
+        
+        if boxOfficeItems.count == 10 { // 10개 채워졌을 때만 넘겨주기
+            boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
+            return true
         }
+        return false
     }
 }
