@@ -11,6 +11,7 @@ final class MovieScrollView: UIScrollView {
     private var movieInformation: MovieInformation?
     private var image: UIImage?
     private var movieInformationStackView: MovieInformationStackView?
+    private var movieSummaryStackView: MovieSummaryStackView?
     
     private let movieStackView: UIStackView = {
         let stackView = UIStackView()
@@ -47,12 +48,16 @@ final class MovieScrollView: UIScrollView {
 
 extension MovieScrollView {
     private func configureUI() {
+        configureMovieSummaryStackView()
         configureMovieImageView()
         configureMovieInformationStackView()
         
-        guard let movieInformationStackView = movieInformationStackView else { return }
+        guard let movieSummaryStackView = movieSummaryStackView,
+              let movieInformationStackView = movieInformationStackView
+        else { return }
         
         self.addSubview(movieStackView)
+        movieStackView.addArrangedSubview(movieSummaryStackView)
         movieStackView.addArrangedSubview(movieImageView)
         movieStackView.addArrangedSubview(movieInformationStackView)
     }
@@ -61,13 +66,20 @@ extension MovieScrollView {
         movieImageView.image = image
     }
     
+    private func configureMovieSummaryStackView() {
+        guard let movieInformation = movieInformation else { return }
+        movieSummaryStackView = MovieSummaryStackView(frame: .zero, movieInformation: movieInformation)
+    }
+    
     private func configureMovieInformationStackView() {
         guard let movieInformation = movieInformation else { return }
         movieInformationStackView = MovieInformationStackView(frame: .zero, movieInformation: movieInformation)
     }
     
     private func setUpConstraints() {
-        guard let movieInformationStackView = movieInformationStackView else { return }
+        guard let movieSummaryStackView = movieSummaryStackView,
+              let movieInformationStackView = movieInformationStackView
+        else { return }
         
         self.translatesAutoresizingMaskIntoConstraints = false
         let imageRatio = calculateImageRatio()
@@ -78,6 +90,11 @@ extension MovieScrollView {
             movieStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             movieStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             movieStackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            
+            movieSummaryStackView.widthAnchor.constraint(
+                equalTo: movieStackView.widthAnchor,
+                constant: -40
+            ),
             
             movieImageView.widthAnchor.constraint(
                 equalTo: movieStackView.widthAnchor,
