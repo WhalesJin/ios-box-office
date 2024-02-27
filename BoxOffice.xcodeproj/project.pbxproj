@@ -43,6 +43,7 @@
 		AC349D832B69DB5300CF315C /* KoreafilmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC349D822B69DB5300CF315C /* KoreafilmAPI.swift */; };
 		AC4599AE2B849A25009FF55B /* BoxOfficeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4599AD2B849A25009FF55B /* BoxOfficeItem.swift */; };
 		AC48BF802B8D7C0800DBAD26 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC48BF7F2B8D7C0800DBAD26 /* CacheManager.swift */; };
+		AC48BF852B8D7CA400DBAD26 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC48BF842B8D7CA400DBAD26 /* CacheManagerTests.swift */; };
 		AC4A50FC2B4D6D12005D5DB3 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */; };
 		AC9BDB3E2A78D083000FA75F /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC9BDB3D2A78D083000FA75F /* APIKey.plist */; };
 		AC9CEA692A8A733C00DD74F4 /* MovieScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */; };
@@ -108,6 +109,7 @@
 		AC349D822B69DB5300CF315C /* KoreafilmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoreafilmAPI.swift; sourceTree = "<group>"; };
 		AC4599AD2B849A25009FF55B /* BoxOfficeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeItem.swift; sourceTree = "<group>"; };
 		AC48BF7F2B8D7C0800DBAD26 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		AC48BF842B8D7CA400DBAD26 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		AC4A50FB2B4D6D12005D5DB3 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		AC9BDB3D2A78D083000FA75F /* APIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
 		AC9CEA682A8A733C00DD74F4 /* MovieScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScrollView.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				AC0546C32B5609CE0087B7F7 /* ImageManagerTests */,
 				AC0546BD2B5609B70087B7F7 /* BoxOfficeManagerTests */,
 				AC0546C02B5609C10087B7F7 /* DecodingManagerTests */,
+				AC48BF832B8D7C8C00DBAD26 /* CacheManagerTests */,
 			);
 			path = BoxOfficeTests;
 			sourceTree = "<group>";
@@ -315,6 +318,14 @@
 				AC0546D42B5609E70087B7F7 /* NetworkManagerTests.swift */,
 			);
 			path = NetworkManagerTests;
+			sourceTree = "<group>";
+		};
+		AC48BF832B8D7C8C00DBAD26 /* CacheManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC48BF842B8D7CA400DBAD26 /* CacheManagerTests.swift */,
+			);
+			path = CacheManagerTests;
 			sourceTree = "<group>";
 		};
 		AC4A50F62B4D6C99005D5DB3 /* Network */ = {
@@ -511,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC48BF852B8D7CA400DBAD26 /* CacheManagerTests.swift in Sources */,
 				AC0546C52B5609CE0087B7F7 /* ImageManagerTests.swift in Sources */,
 				AC0546C22B5609C10087B7F7 /* DecodingManagerTests.swift in Sources */,
 				AC0546D72B5609F70087B7F7 /* Requesters.swift in Sources */,
