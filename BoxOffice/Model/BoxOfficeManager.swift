@@ -10,15 +10,27 @@ import UIKit
 final class BoxOfficeManager {
     private let networkManager: NetworkManageable
     private let imageManager: ImageManager
+    var boxOfficeItems: [BoxOfficeItem] = []
     
     init(networkManager: NetworkManageable = NetworkManager(requester: DefaultRequester())) {
         self.networkManager = networkManager
         self.imageManager = ImageManager(networkManager: networkManager)
     }
     
+    private func appendAndCheckSize(movieCode: String, boxOfficeData: BoxOfficeData, movieInformation: MovieInformation, imageUrl: URL?, posterImage: UIImage) -> Bool {
+        boxOfficeItems.append(BoxOfficeItem(movieCode: movieCode,
+                                            boxOfficeData: boxOfficeData,
+                                            movieInformation: movieInformation,
+                                            imageUrl: imageUrl,
+                                            posterImage: posterImage))
+        if boxOfficeItems.count == 10 { // 10개 채워졌을 때만 넘겨주기
+            boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
+            return true
+        }
+        return false
+    }
+    
     func fetchBoxOfficeItems(targetDate: TargetDate, completion: @escaping (Result<[BoxOfficeItem], Error>) -> Void) {
-        var boxOfficeItems: [BoxOfficeItem] = []
-        
         fetchDailyBoxOfficeList(with: targetDate) { [self] dailyBoxOfficeListResult in
             switch dailyBoxOfficeListResult {
             case .success(let dailyBoxOfficeList):
@@ -30,16 +42,15 @@ final class BoxOfficeManager {
                                 switch imageDataResult {
                                 case .success(let imageUrl):
                                     if let imageUrl {
-                                        imageManager.fetchImage(url: imageUrl) { imageResult in
+                                        imageManager.fetchImage(url: imageUrl) { [self] imageResult in
                                             switch imageResult {
                                             case .success(let posterImage):
-                                                boxOfficeItems.append(BoxOfficeItem(movieCode: movieInformation.movieCode,
-                                                                                    boxOfficeData: movie,
-                                                                                    movieInformation: movieInformation,
-                                                                                    imageUrl: imageUrl,
-                                                                                    posterImage: posterImage ?? UIImage(named: "default_image")!))
-                                                if boxOfficeItems.count == 10 { // 10개 채워졌을 때만 넘겨주기
-                                                    boxOfficeItems.sort { a, b in Int(a.boxOfficeData.rank) ?? 0 < Int(b.boxOfficeData.rank) ?? 0 }
+                                                if let posterImage,
+                                                   appendAndCheckSize(movieCode: movie.movieCode,
+                                                                      boxOfficeData: movie,
+                                                                      movieInformation: movieInformation,
+                                                                      imageUrl: imageUrl,
+                                                                      posterImage: posterImage) {
                                                     completion(.success(boxOfficeItems))
                                                 }
                                             case .failure(let error):
@@ -50,8 +61,14 @@ final class BoxOfficeManager {
                                     else {
                                         completion(.failure(DataError.noData))
                                     }
-                                case .failure(let error):
-                                    completion(.failure(error))
+                                case .failure(_):
+                                    if appendAndCheckSize(movieCode: movie.movieCode,
+                                                          boxOfficeData: movie,
+                                                          movieInformation: movieInformation,
+                                                          imageUrl: URL(string: ""),
+                                                          posterImage: UIImage(named: "default_image")!) {
+                                        completion(.success(boxOfficeItems))
+                                    }
                                 }
                             }
                         case .failure(let error):
@@ -121,7 +138,7 @@ final class BoxOfficeManager {
     
     // MARK: 영화포스터 이미지 가져오기 - Koreafilm API 사용
     func fetchMovieImageUrl(with keyword: (String, String), completion: @escaping (Result<URL?, Error>) -> Void) {
-        let koreafilmAPI = KoreafilmAPI.movie(title: keyword.0, englishTitle: keyword.1)
+        let koreafilmAPI = KoreafilmAPI.movie(title: keyword.0, englishTitle: keyword.0.count < 15 ? keyword.1 : "")
         let _ = networkManager.fetchData(from: koreafilmAPI.url,
                                  method: .get,
                                  header: nil) { result in
