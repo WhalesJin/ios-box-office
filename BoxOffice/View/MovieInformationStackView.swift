@@ -9,19 +9,26 @@ import UIKit
 
 final class MovieInformationStackView: UIStackView {
     private var movieInformation: MovieInformation?
+    private var plot: String?
     
     private var directorStackView: MovieDetailStackView?
-    private var productionYearStackView: MovieDetailStackView?
-    private var openingDateStackView: MovieDetailStackView?
-    private var showTimeStackView: MovieDetailStackView?
-    private var watchGradeStackView: MovieDetailStackView?
-    private var nationStackView: MovieDetailStackView?
-    private var genreStackView: MovieDetailStackView?
     private var actorStackView: MovieDetailStackView?
     
-    init(frame: CGRect, movieInformation: MovieInformation) {
+    private let plotLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .natural
+        label.font = .preferredFont(forTextStyle: .body)
+        label.textColor = .darkGray
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = .zero
+        
+        return label
+    }()
+    
+    init(frame: CGRect, movieInformation: MovieInformation, plot: String) {
         super.init(frame: frame)
         self.movieInformation = movieInformation
+        self.plot = plot
         
         configureUI()
     }
@@ -36,13 +43,16 @@ extension MovieInformationStackView {
         self.axis = .vertical
         self.alignment = .center
         self.distribution = .fill
-        self.spacing = 8
+        self.spacing = 10
         self.translatesAutoresizingMaskIntoConstraints = false
         
         configureLabels()
         
-        _ = [directorStackView, productionYearStackView, openingDateStackView, showTimeStackView,
-         watchGradeStackView,nationStackView, genreStackView, actorStackView].map {
+        self.addArrangedSubview(plotLabel)
+        
+        plotLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        
+        _ = [directorStackView, actorStackView].map {
             guard let stackView = $0 else { return }
             self.addArrangedSubview(stackView)
             stackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
@@ -50,22 +60,13 @@ extension MovieInformationStackView {
     }
     
     private func configureLabels() {
-        guard let directorsName = movieInformation?.directors.map({ $0.personName }).joined(separator: ", "),
-              let productionYear = movieInformation?.productionYear,
-              var openingDate = movieInformation?.openingDate,
-              let showTime = movieInformation?.showTime,
-              let watchGradesName = movieInformation?.audits.map({ $0.watchGradeName }).joined(separator: ", "),
-              let nationsName = movieInformation?.nations.map({ $0.nationName }).joined(separator: ", "),
-              let genresName = movieInformation?.genres.map({ $0.genreName }).joined(separator: ", "),
-              let actorsName = movieInformation?.actors.map({ $0.personName }).joined(separator: ", ") else { return }
+        guard let plot = plot,
+              let directorsName = movieInformation?.directors.map({ $0.personName }).joined(separator: ", "),
+              let actorsName = movieInformation?.actors.map({ $0.personName }).joined(separator: ", ")
+        else { return }
         
+        plotLabel.text = plot
         directorStackView = MovieDetailStackView(frame: .zero, title: "감독", content: directorsName)
-        productionYearStackView = MovieDetailStackView(frame: .zero, title: "제작년도", content: productionYear)
-        openingDateStackView = MovieDetailStackView(frame: .zero, title: "개봉일", content: openingDate.formattedDateWithHyphen())
-        showTimeStackView = MovieDetailStackView(frame: .zero, title: "상영시간", content: showTime)
-        watchGradeStackView = MovieDetailStackView(frame: .zero, title: "관람등급", content: watchGradesName)
-        nationStackView = MovieDetailStackView(frame: .zero, title: "제작국가", content: nationsName)
-        genreStackView = MovieDetailStackView(frame: .zero, title: "장르", content: genresName)
-        actorStackView = MovieDetailStackView(frame: .zero, title: "배우", content: actorsName)
+        actorStackView = MovieDetailStackView(frame: .zero, title: "출연", content: actorsName)
     }
 }

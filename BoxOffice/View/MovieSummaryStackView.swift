@@ -10,7 +10,18 @@ import UIKit
 final class MovieSummaryStackView: UIStackView {
     private var movieInformation: MovieInformation?
     
-    private let summaryLabel: UILabel = {
+    private let basicInformationLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.textColor = .darkGray
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = .zero
+        
+        return label
+    }()
+    
+    private let showInformationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .headline)
@@ -35,22 +46,27 @@ final class MovieSummaryStackView: UIStackView {
 
 extension MovieSummaryStackView {
     private func configureUI() {
-        self.axis = .horizontal
+        self.axis = .vertical
         self.alignment = .leading
         self.distribution = .fill
-        self.spacing = .zero
+        self.spacing = 8
         self.translatesAutoresizingMaskIntoConstraints = false
         
         configureLabel()
         
-        self.addArrangedSubview(summaryLabel)
+        self.addArrangedSubview(basicInformationLabel)
+        self.addArrangedSubview(showInformationLabel)
     }
     
     private func configureLabel() {
         guard let productionYear = movieInformation?.productionYear,
+              let nationsName = movieInformation?.nations.map({ $0.nationName }).joined(separator: ", "),
+              let genresName = movieInformation?.genres.map({ $0.genreName }).joined(separator: ", "),
               let watchGradesName = movieInformation?.audits.map({ $0.watchGradeName }).joined(separator: ", "),
-              let showTime = movieInformation?.showTime else { return }
+              let showTime = movieInformation?.showTime
+        else { return }
         
-        summaryLabel.text = "\(productionYear) • \(watchGradesName) • \(showTime)분"
+        basicInformationLabel.text = "\(productionYear) • \(nationsName) • \(genresName)"
+        showInformationLabel.text = "\(watchGradesName) • \(showTime)분"
     }
 }

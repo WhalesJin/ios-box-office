@@ -14,7 +14,7 @@ enum Constraints {
     static let rankStackViewFromContentViewWidth: CGFloat = 0.15
     static let titleViewFromContentViewTop: CGFloat = 5
     static let titleViewFromContentViewBottom: CGFloat = -5
-    static let itemTitleLabelFromMovieDetailStackViewWidth: CGFloat = 0.2
+    static let itemTitleLabelFromMovieDetailStackViewWidth: CGFloat = 0.1
     static let movieImageViewFromMovieStackViewWidth: CGFloat = -40
     static let movieInformationStackViewFromMovieStackViewWidth: CGFloat = -40
 }

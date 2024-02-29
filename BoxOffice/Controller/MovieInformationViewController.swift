@@ -13,13 +13,15 @@ final class MovieInformationViewController: UIViewController {
     private let imageManager = ImageManager()
     private var movieInformation: MovieInformation?
     private var posterImage: UIImage?
+    private var plot: String?
     
     private let activityIndicatorView = UIActivityIndicatorView()
     
-    init(movieInformation: MovieInformation, posterImage: UIImage) {
+    init(movieInformation: MovieInformation, posterImage: UIImage, plot: String) {
         super.init(nibName: nil, bundle: nil)
         self.movieInformation = movieInformation
         self.posterImage = posterImage
+        self.plot = plot
     }
     
     required init?(coder: NSCoder) {
@@ -45,10 +47,12 @@ extension MovieInformationViewController {
     }
     
     private func configureUI() {
-        guard let posterImage = posterImage,
-              let movieInformation = movieInformation else { return }
+        guard let movieInformation = movieInformation,
+              let posterImage = posterImage,
+              let plot = plot
+        else { return }
         
-        let movieScrollView = MovieScrollView(frame: .zero, image: posterImage, movieInformation: movieInformation)
+        let movieScrollView = MovieScrollView(frame: .zero, movieInformation: movieInformation, image: posterImage, plot: plot)
         
         activityIndicatorView.removeFromSuperview()
         view.addSubview(movieScrollView)

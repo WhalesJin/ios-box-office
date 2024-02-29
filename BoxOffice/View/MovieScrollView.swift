@@ -10,6 +10,7 @@ import UIKit
 final class MovieScrollView: UIScrollView {
     private var movieInformation: MovieInformation?
     private var image: UIImage?
+    private var plot: String?
     private var movieInformationStackView: MovieInformationStackView?
     private var movieSummaryStackView: MovieSummaryStackView?
     
@@ -18,7 +19,7 @@ final class MovieScrollView: UIScrollView {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -32,10 +33,11 @@ final class MovieScrollView: UIScrollView {
         return imageView
     }()
     
-    init(frame: CGRect, image: UIImage, movieInformation: MovieInformation) {
+    init(frame: CGRect, movieInformation: MovieInformation, image: UIImage, plot: String) {
         super.init(frame: frame)
-        self.image = image
         self.movieInformation = movieInformation
+        self.image = image
+        self.plot = plot
         
         configureUI()
         setUpConstraints()
@@ -72,8 +74,11 @@ extension MovieScrollView {
     }
     
     private func configureMovieInformationStackView() {
-        guard let movieInformation = movieInformation else { return }
-        movieInformationStackView = MovieInformationStackView(frame: .zero, movieInformation: movieInformation)
+        guard let movieInformation = movieInformation,
+              let plot = plot
+        else { return }
+        
+        movieInformationStackView = MovieInformationStackView(frame: .zero, movieInformation: movieInformation, plot: plot)
     }
     
     private func setUpConstraints() {

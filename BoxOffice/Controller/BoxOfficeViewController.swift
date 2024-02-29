@@ -250,9 +250,11 @@ extension BoxOfficeViewController {
 
 extension BoxOfficeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieInformation: MovieInformation = items[indexPath.item].movieInformation
-        let posterImager: UIImage = items[indexPath.item].posterImage
-        let movieInformationViewController = MovieInformationViewController(movieInformation: movieInformation, posterImage: posterImager)
+        let selectedItem = items[indexPath.item]
+        let movieInformation = selectedItem.movieInformation
+        let posterImager = selectedItem.posterImage
+        let plot = selectedItem.plot
+        let movieInformationViewController = MovieInformationViewController(movieInformation: movieInformation, posterImage: posterImager, plot: plot)
         
         show(movieInformationViewController, sender: self)
     }

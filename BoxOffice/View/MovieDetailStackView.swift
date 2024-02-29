@@ -13,7 +13,7 @@ final class MovieDetailStackView: UIStackView {
     
     private let itemTitleLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = .zero
@@ -47,7 +47,7 @@ final class MovieDetailStackView: UIStackView {
 extension MovieDetailStackView {
     private func configureUI() {
         self.axis = .horizontal
-        self.alignment = .fill
+        self.alignment = .top
         self.distribution = .fill
         self.spacing = .zero
         self.translatesAutoresizingMaskIntoConstraints = false
