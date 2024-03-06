@@ -1,0 +1,502 @@
+{
+    "Query": "귀멸의 칼날",
+    "KMAQuery": "귀멸 칼날 귀멸의",
+    "TotalCount": 8,
+    "Data": [
+        {
+            "CollName": "kmdb_new2",
+            "TotalCount": 8,
+            "Count": 8,
+            "Result": [
+                {
+                    "DOCID": "F54146",
+                    "movieId": "F",
+                    "movieSeq": "54146",
+                    "title": "  !HS 귀멸의 !HE   !HS 칼날 !HE : 남매의 연",
+                    "titleEng": "Demon Slayer: Kimetsu no Yaiba Sibling’s Bond",
+                    "titleOrg": "鬼滅の刃 兄妹の絆",
+                    "titleEtc": "귀멸의칼날:남매의연^귀멸의 칼날: 남매의 연^鬼滅の刃 兄妹の絆^귀멸의 칼날 남매의연, 귀멸의칼날 남매의 연, 귀멸의칼날 남매의연, 귀멸의 칼날 남매의 연, 귀멸의 칼날 : 남매의 연, 귀멸의칼날남매의연^Demon Slayer: Kimetsu no Yaiba Sibling’s Bond",
+                    "prodYear": "2020",
+                    "directors": {
+                        "director": [
+                            {
+                                "directorNm": "소토자키 하루오",
+                                "directorEnNm": "",
+                                "directorId": ""
+                            }
+                        ]
+                    },
+                    "actors": {
+                        "actor": [
+                            {
+                                "actorNm": "하나에 나츠키",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            },
+                            {
+                                "actorNm": "키토 아카리",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            },
+                            {
+                                "actorNm": "시모노 히로",
+                                "actorEnNm": "Shimono Hiro",
+                                "actorId": "00171899"
+                            },
+                            {
+                                "actorNm": "마츠오카 요시츠구",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            },
+                            {
+                                "actorNm": "사쿠라이 타카히로",
+                                "actorEnNm": "Takahiro Sakurai",
+                                "actorId": "00118650"
+                            }
+                        ]
+                    },
+                    "nation": "일본",
+                    "company": "ufotable",
+                    "plots": {
+                        "plot": [
+                            {
+                                "plotLang": "한국어",
+                                "plotText": "혈귀의 습격으로 가족을 잃은 소년 ‘탄지로’.유일하게 살아남은 여동생 ‘네즈코’마저 혈귀로 변해 버리고 마는데…‘탄지로’는 ‘네즈코’를 인간으로 되돌리기 위해-그리고 가족을 죽인 혈귀를 심판하기 위해-‘귀살대’의 길을 가기로 결의한다.혹독한 훈련 끝에 귀살대 대원으로 거듭난 ‘탄지로’는 복수의 칼날을 들고 목숨 건 사투를 시작하는데…소년이여, 여동생을 구하기 위해 칼날을 들어라!인간과 혈귀가 엮어낸 애절한 오누이의 이야기가 지금 시작된다-!"
+                            }
+                        ]
+                    },
+                    "runtime": "105",
+                    "rating": "15세관람가",
+                    "genre": "판타지,시대극/사극",
+                    "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/54146",
+                    "type": "애니메이션",
+                    "use": "극장용",
+                    "episodes": "",
+                    "ratedYn": "Y",
+                    "repRatDate": "20210825",
+                    "repRlsDate": "20211110",
+                    "ratings": {
+                        "rating": [
+                            {
+                                "ratingMain": "Y",
+                                "ratingDate": "20210825",
+                                "ratingNo": "2021-MF02128",
+                                "ratingGrade": "15세관람가",
+                                "releaseDate": "20211110",
+                                "runtime": "105"
+                            }
+                        ]
+                    },
+                    "keywords": "",
+                    "posters": "http://file.koreafilm.or.kr/thm/02/99/17/40/tn_DPF023909.jpg",
+                    "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739384.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739385.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739386.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739387.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739388.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739389.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739390.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739391.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739392.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/58/69/tn_DST739393.jpg",
+                    "staffs": {
+                        "staff": [
+                            {
+                                "staffNm": "소토자키 하루오",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "감독",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "고토게 코요하루",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "원작",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "하나에 나츠키",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "카마도 탄지로 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "키토 아카리",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "카마도 네즈코 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "시모노 히로",
+                                "staffEnNm": "Shimono Hiro",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "아가츠마 젠이츠 목소리",
+                                "staffEtc": "",
+                                "staffId": "00171899"
+                            },
+                            {
+                                "staffNm": "마츠오카 요시츠구",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "하시비라 이노스케 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "사쿠라이 타카히로",
+                                "staffEnNm": "Takahiro Sakurai",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "토미오카 기유 목소리",
+                                "staffEtc": "",
+                                "staffId": "00118650"
+                            },
+                            {
+                                "staffNm": "콘도 히카루",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "제작자",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "테라오 유이치",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "촬영",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "카지우라 유키",
+                                "staffEnNm": "Yuki Kaziura",
+                                "staffRoleGroup": "음악",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": "00145375"
+                            },
+                            {
+                                "staffNm": "시이나 고우",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "음악",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "ufotable",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "제작사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "BoXoo 엔터테인먼트",
+                                "staffEnNm": "BoXoo Entertainment",
+                                "staffRoleGroup": "배급사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "애니맥스브로드캐스팅코리아(유)",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "수입사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            }
+                        ]
+                    },
+                    "vods": {
+                        "vod": [
+                            {
+                                "vodClass": "귀멸의 칼날: 남매의 연 [메인예고편]",
+                                "vodUrl": "https://www.kmdb.or.kr/trailer/trailerPlayPop?pFileNm=MK052449_P02.mp4"
+                            }
+                        ]
+                    },
+                    "openThtr": "",
+                    "stat": [
+                        {
+                            "screenArea": "",
+                            "screenCnt": "",
+                            "salesAcc": "",
+                            "audiAcc": "",
+                            "statSouce": "",
+                            "statDate": ""
+                        }
+                    ],
+                    "screenArea": "",
+                    "screenCnt": "",
+                    "salesAcc": "",
+                    "audiAcc": "",
+                    "statSouce": "",
+                    "statDate": "",
+                    "themeSong": "",
+                    "soundtrack": "",
+                    "fLocation": "",
+                    "Awards1": "",
+                    "Awards2": "",
+                    "regDate": "20210827",
+                    "modDate": "20210930",
+                    "Codes": {
+                        "Code": [
+                            {
+                                "CodeNm": "",
+                                "CodeNo": ""
+                            }
+                        ]
+                    },
+                    "CommCodes": {
+                        "CommCode": [
+                            {
+                                "CodeNm": "",
+                                "CodeNo": ""
+                            }
+                        ]
+                    },
+                    "ALIAS": "srcKmdb2"
+                },
+                {
+                    "DOCID": "F56130",
+                    "movieId": "F",
+                    "movieSeq": "56130",
+                    "title": "  !HS 귀멸의 !HE   !HS 칼날 !HE : 아사쿠사 편",
+                    "titleEng": "Demon Slayer: Kimetsu no Yaiba Asakusa Arc",
+                    "titleOrg": "鬼滅の刃 浅草編",
+                    "titleEtc": "귀멸의칼날:아사쿠사편^귀멸의 칼날: 아사쿠사 편^鬼滅の刃 浅草編^귀멸의 칼날: 아사쿠사편, 귀멸의 칼날아사쿠사편, 귀멸의 칼날 아사쿠사 편^Demon Slayer: Kimetsu no Yaiba Asakusa Arc",
+                    "prodYear": "2021",
+                    "directors": {
+                        "director": [
+                            {
+                                "directorNm": "소토자키 하루오",
+                                "directorEnNm": "",
+                                "directorId": ""
+                            }
+                        ]
+                    },
+                    "actors": {
+                        "actor": [
+                            {
+                                "actorNm": "하나에 나츠키",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            },
+                            {
+                                "actorNm": "세키 토시히코",
+                                "actorEnNm": "Toshihiko Seki",
+                                "actorId": "00138342"
+                            },
+                            {
+                                "actorNm": "키토 아카리",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            },
+                            {
+                                "actorNm": "시모노 히로",
+                                "actorEnNm": "Hiro Shimono",
+                                "actorId": "00185016"
+                            },
+                            {
+                                "actorNm": "마츠오카 요시츠구",
+                                "actorEnNm": "",
+                                "actorId": ""
+                            }
+                        ]
+                    },
+                    "nation": "일본",
+                    "company": "ufotable",
+                    "plots": {
+                        "plot": [
+                            {
+                                "plotLang": "한국어",
+                                "plotText": "귀살대에 입대한 탄지로는 매일 소녀가 실종된다고 하는 마을로 향한다.혈귀의 냄새는 나지만 그 모습을 찾을 수 없는 가운데, 새로운 소녀에게 혈귀의 손이 다가온다.그다음으로 탄지로가 방문한 곳은 아사쿠사.화려한 도시와 즐비한 상점에 당황하는 탄지로는 그곳에서 혈귀의 냄새를 찾아낸다.그 냄새는 인간을 혈귀로 바꿀 수 있는 유일한 존재이자 탄지로의 숙적이기도 한 키부츠지 무잔의 것이었다.이윽고 탄지로의 앞에 타마요와 유시로가 나타나는데…"
+                            }
+                        ]
+                    },
+                    "runtime": "103",
+                    "rating": "15세관람가",
+                    "genre": "액션,판타지,시대극/사극",
+                    "kmdbUrl": "https://www.kmdb.or.kr/db/kor/detail/movie/F/56130",
+                    "type": "애니메이션",
+                    "use": "극장용",
+                    "episodes": "",
+                    "ratedYn": "Y",
+                    "repRatDate": "20220614",
+                    "repRlsDate": "20220825",
+                    "ratings": {
+                        "rating": [
+                            {
+                                "ratingMain": "Y",
+                                "ratingDate": "20220614",
+                                "ratingNo": "2022-MF01405",
+                                "ratingGrade": "15세관람가",
+                                "releaseDate": "20220825",
+                                "runtime": "103"
+                            }
+                        ]
+                    },
+                    "keywords": "",
+                    "posters": "http://file.koreafilm.or.kr/thm/02/99/17/75/tn_DPF025632.jpg",
+                    "stlls": "http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779507.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779508.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779509.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779510.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779511.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779512.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779513.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779514.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779515.jpg|http://file.koreafilm.or.kr/thm/01/copy/00/62/69/tn_DST779516.jpg",
+                    "staffs": {
+                        "staff": [
+                            {
+                                "staffNm": "소토자키 하루오",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "감독",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "고토게 코요하루",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "원작",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "하나에 나츠키",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "카마도 탄지로 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "세키 토시히코",
+                                "staffEnNm": "Toshihiko Seki",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "키부츠지 무잔 목소리",
+                                "staffEtc": "",
+                                "staffId": "00138342"
+                            },
+                            {
+                                "staffNm": "키토 아카리",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "카마도 네즈코 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "시모노 히로",
+                                "staffEnNm": "Hiro Shimono",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "아가츠마 젠이츠 목소리",
+                                "staffEtc": "",
+                                "staffId": "00185016"
+                            },
+                            {
+                                "staffNm": "마츠오카 요시츠구",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "출연",
+                                "staffRole": "하시비라 이노스케 목소리",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "이와카미 아츠히로",
+                                "staffEnNm": "Atsuhiro Iwakami",
+                                "staffRoleGroup": "기획",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": "00185015"
+                            },
+                            {
+                                "staffNm": "오요시 마코토",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "기획",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "테라오 유이치",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "촬영",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "ufotable",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "제작사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "BoXoo 엔터테인먼트",
+                                "staffEnNm": "BoXoo Entertainment",
+                                "staffRoleGroup": "배급사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            },
+                            {
+                                "staffNm": "애니맥스브로드캐스팅코리아(유)",
+                                "staffEnNm": "",
+                                "staffRoleGroup": "수입사",
+                                "staffRole": "",
+                                "staffEtc": "",
+                                "staffId": ""
+                            }
+                        ]
+                    },
+                    "vods": {
+                        "vod": [
+                            {
+                                "vodClass": "",
+                                "vodUrl": ""
+                            }
+                        ]
+                    },
+                    "openThtr": "",
+                    "stat": [
+                        {
+                            "screenArea": "",
+                            "screenCnt": "",
+                            "salesAcc": "",
+                            "audiAcc": "",
+                            "statSouce": "",
+                            "statDate": ""
+                        }
+                    ],
+                    "screenArea": "",
+                    "screenCnt": "",
+                    "salesAcc": "",
+                    "audiAcc": "",
+                    "statSouce": "",
+                    "statDate": "",
+                    "themeSong": "",
+                    "soundtrack": "",
+                    "fLocation": "",
+                    "Awards1": "",
+                    "Awards2": "",
+                    "regDate": "20220617",
+                    "modDate": "20220713",
+                    "Codes": {
+                        "Code": [
+                            {
+                                "CodeNm": "",
+                                "CodeNo": ""
+                            }
+                        ]
+                    },
+                    "CommCodes": {
+                        "CommCode": [
+                            {
+                                "CodeNm": "",
+                                "CodeNo": ""
+                            }
+                        ]
+                    },
+                    "ALIAS": "srcKmdb2"
+                }
+            ]
+        }
+    ]
+}
