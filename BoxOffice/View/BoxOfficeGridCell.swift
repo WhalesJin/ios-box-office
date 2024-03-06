@@ -53,7 +53,6 @@ final class BoxOfficeGridCell: UICollectionViewCell {
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
-        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 1
         
         return label

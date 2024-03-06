@@ -42,7 +42,6 @@ final class MovieInformationViewController: UIViewController {
 extension MovieInformationViewController {
     private func configureNavigationItem() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = movieInformation?.movieName
     }
     

@@ -40,6 +40,10 @@ final class BoxOfficeViewController: UIViewController {
         collectionView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func loadData() {
         boxOfficeManager.fetchBoxOfficeItems(targetDate: yesterday) { result in
             switch result {
