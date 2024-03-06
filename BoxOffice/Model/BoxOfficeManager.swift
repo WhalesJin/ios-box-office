@@ -30,7 +30,7 @@ final class BoxOfficeManager {
                         fetchMovieData(with: movie.movieCode) { [self] movieResult in
                             switch movieResult {
                             case .success(let movieInformation):
-                                fetchKoreaFilmMovieData(with: (movieInformation.movieName, movieInformation.movieEnglishName)) { [self] imageDataResult in
+                                fetchKoreaFilmFirstMovieData(with: (movieInformation.movieName, movieInformation.movieEnglishName)) { [self] imageDataResult in
                                     switch imageDataResult {
                                     case .success(let (imageUrl, plot)):
                                         if let imageUrl { // Url이 nil이 아닐 때
@@ -108,8 +108,44 @@ final class BoxOfficeManager {
     }
     
     // MARK: Koreafilm에서 필요한 영화 정보 가져오기(줄거리, 영화포스터 URL)
-    func fetchKoreaFilmMovieData(with keyword: (String, String), completion: @escaping (Result<(url: URL?, plot: String?), Error>) -> Void) {
-        let koreaFilmAPI = KoreaFilmAPI.movie(title: keyword.0, englishTitle: keyword.0.count < 15 ? keyword.1 : "")
+    func fetchKoreaFilmFirstMovieData(with keyword: (String, String), completion: @escaping (Result<(url: URL?, plot: String?), Error>) -> Void) {
+        let koreaFilmAPI = KoreaFilmAPI.movie(title: keyword.0, englishTitle: "")
+        
+        let _ = networkManager.fetchData(from: koreaFilmAPI.url,
+                                 method: .get,
+                                         header: nil) { [self] result in
+            do {
+                let decodedData = try DecodingManager.decodeJSON(type: KMDbMovieData.self, data: result.get())
+                var movieData = decodedData.data.first
+                
+                if movieData?.result.count ?? 0 > 1 {
+                    fetchKoreaFilmSecondMovieData(with: (keyword.0, keyword.1)) { result in
+                        switch result {
+                        case .success((let url, let plot)):
+                            completion(.success((url, plot)))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    if let movieResult = movieData?.result.first {
+                        let movieImageUrlString = movieResult.posterUrls.split(separator: "|").first
+                        let movieImageUrl = URL(string: String(movieImageUrlString ?? ""))
+                        let moviePlotText = movieResult.plots.plot.first?.plotText
+                        
+                        completion(.success((movieImageUrl, moviePlotText)))
+                    } else {
+                        completion(.failure(DataError.noData))
+                    }
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchKoreaFilmSecondMovieData(with keyword: (String, String), completion: @escaping (Result<(url: URL?, plot: String?), Error>) -> Void) {
+        let koreaFilmAPI = KoreaFilmAPI.movie(title: keyword.0, englishTitle: keyword.1)
         
         let _ = networkManager.fetchData(from: koreaFilmAPI.url,
                                  method: .get,
